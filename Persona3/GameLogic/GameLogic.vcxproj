@@ -20,20 +20,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="battle\battle.c" />
-    <ClCompile Include="battle\enemy\battle_enemy.c" />
-    <ClCompile Include="battle\persona\battle_persona.c" />
-    <ClCompile Include="battle\player\battle_player.c" />
-    <ClCompile Include="battle\skills\battle_skills.c" />
-    <ClCompile Include="battle\status\battle_status.c" />
     <ClCompile Include="battle\system\battle_system.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="battle\battle.h" />
-    <ClInclude Include="battle\enemy\battle_enemy.h" />
-    <ClInclude Include="battle\persona\battle_persona.h" />
-    <ClInclude Include="battle\player\battle_player.h" />
-    <ClInclude Include="battle\skills\battle_skills.h" />
-    <ClInclude Include="battle\status\battle_status.h" />
     <ClInclude Include="battle\system\battle_system.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -16,9 +16,6 @@
     <Filter Include="battle">
       <UniqueIdentifier>{4aa3bdbe-25dc-4200-8341-6b07e8ad8904}</UniqueIdentifier>
     </Filter>
-    <Filter Include="battle\player">
-      <UniqueIdentifier>{3b6c6bae-b008-41df-b10b-43429a4b8234}</UniqueIdentifier>
-    </Filter>
     <Filter Include="battle\ui">
       <UniqueIdentifier>{03a853ae-25b2-4c07-921d-466506f46109}</UniqueIdentifier>
     </Filter>
@@ -28,26 +25,11 @@
     <Filter Include="battle\exp">
       <UniqueIdentifier>{4668956d-a6e5-4ed2-bfe8-0c068ea62d84}</UniqueIdentifier>
     </Filter>
-    <Filter Include="battle\item">
-      <UniqueIdentifier>{8791c1d6-725d-42fd-aecf-205f7ad98ce6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="battle\shuffle">
       <UniqueIdentifier>{44c5eee9-724a-48a6-85bf-0c81911b6185}</UniqueIdentifier>
     </Filter>
-    <Filter Include="battle\skills">
-      <UniqueIdentifier>{dd0ac511-a3e1-4e2d-9325-61ce046998cb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="battle\aibo">
       <UniqueIdentifier>{81ac9129-1f15-430d-af7b-183933105bb1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="battle\enemy">
-      <UniqueIdentifier>{faccf6c1-5072-415b-a022-e2c875ebfd13}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="battle\persona">
-      <UniqueIdentifier>{8ffcacc8-2fba-4868-a8ee-f447453bd96d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="battle\status">
-      <UniqueIdentifier>{25c390bd-bff1-4da7-8967-a4b64e77e55f}</UniqueIdentifier>
     </Filter>
     <Filter Include="battle\system">
       <UniqueIdentifier>{2c743f8f-c873-4205-8547-34f31b291061}</UniqueIdentifier>
@@ -72,21 +54,6 @@
     <ClCompile Include="battle\battle.c">
       <Filter>battle</Filter>
     </ClCompile>
-    <ClCompile Include="battle\player\battle_player.c">
-      <Filter>battle\player</Filter>
-    </ClCompile>
-    <ClCompile Include="battle\status\battle_status.c">
-      <Filter>battle\status</Filter>
-    </ClCompile>
-    <ClCompile Include="battle\skills\battle_skills.c">
-      <Filter>battle\skills</Filter>
-    </ClCompile>
-    <ClCompile Include="battle\persona\battle_persona.c">
-      <Filter>battle\persona</Filter>
-    </ClCompile>
-    <ClCompile Include="battle\enemy\battle_enemy.c">
-      <Filter>battle\enemy</Filter>
-    </ClCompile>
     <ClCompile Include="battle\system\battle_system.c">
       <Filter>battle\system</Filter>
     </ClCompile>
@@ -94,21 +61,6 @@
   <ItemGroup>
     <ClInclude Include="battle\battle.h">
       <Filter>battle</Filter>
-    </ClInclude>
-    <ClInclude Include="battle\player\battle_player.h">
-      <Filter>battle\player</Filter>
-    </ClInclude>
-    <ClInclude Include="battle\status\battle_status.h">
-      <Filter>battle\status</Filter>
-    </ClInclude>
-    <ClInclude Include="battle\skills\battle_skills.h">
-      <Filter>battle\skills</Filter>
-    </ClInclude>
-    <ClInclude Include="battle\persona\battle_persona.h">
-      <Filter>battle\persona</Filter>
-    </ClInclude>
-    <ClInclude Include="battle\enemy\battle_enemy.h">
-      <Filter>battle\enemy</Filter>
     </ClInclude>
     <ClInclude Include="battle\system\battle_system.h">
       <Filter>battle\system</Filter>

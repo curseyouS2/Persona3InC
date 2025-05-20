@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="persona\battle_persona.c">
+      <Filter>persona</Filter>
+    </ClCompile>
+    <ClCompile Include="enemy\battle_enemy.c">
+      <Filter>enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="player\battle_player.c">
+      <Filter>player</Filter>
+    </ClCompile>
+    <ClCompile Include="skills\battle_skills.c">
+      <Filter>skills</Filter>
+    </ClCompile>
+    <ClCompile Include="status\battle_status.c">
+      <Filter>status</Filter>
+    </ClCompile>
+    <ClCompile Include="item\item.c">
+      <Filter>item</Filter>
+    </ClCompile>
+    <ClCompile Include="data.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="persona\battle_persona.h">
+      <Filter>persona</Filter>
+    </ClInclude>
+    <ClInclude Include="enemy\battle_enemy.h">
+      <Filter>enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="player\battle_player.h">
+      <Filter>player</Filter>
+    </ClInclude>
+    <ClInclude Include="skills\battle_skills.h">
+      <Filter>skills</Filter>
+    </ClInclude>
+    <ClInclude Include="status\battle_status.h">
+      <Filter>status</Filter>
+    </ClInclude>
+    <ClInclude Include="item\item.h">
+      <Filter>item</Filter>
+    </ClInclude>
+    <ClInclude Include="data.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="enemy">
+      <UniqueIdentifier>{401a54c3-1651-43e3-8ec3-f898cc654335}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="aibo">
+      <UniqueIdentifier>{dce6849f-e149-4bcb-96fb-a0547ccb016a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="equip">
+      <UniqueIdentifier>{60784f9c-43d5-4415-816b-d5a42daad86f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="item">
+      <UniqueIdentifier>{bf8a5ca5-a00a-488a-b225-3341848125f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="persona">
+      <UniqueIdentifier>{1e5745f6-7412-48a8-821c-5a72757fbd21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="player">
+      <UniqueIdentifier>{43082019-f29b-4052-af6c-6f5731b47267}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="skills">
+      <UniqueIdentifier>{a1dc1a73-adb5-4e01-aa1f-0018a6284a71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="status">
+      <UniqueIdentifier>{b1a5cb34-1254-4a63-a609-a297a9c05a67}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
