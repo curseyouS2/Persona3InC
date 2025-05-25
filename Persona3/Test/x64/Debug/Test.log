@@ -1,0 +1,125 @@
+﻿  test_printLog.c
+D:\git\Persona3InC\Persona3\Data\skills\battle_skills.h(77,5): error C2054: 'wholeSkill' 다음에 '('가 필요합니다.
+  (소스 파일 'test_printLog/test_printLog.c'을(를) 컴파일하는 중)
+  
+D:\git\Persona3InC\Persona3\Data\persona\battle_persona.h(7,19): error C2057: 상수 식이 필요합니다.
+  (소스 파일 'test_printLog/test_printLog.c'을(를) 컴파일하는 중)
+  
+D:\git\Persona3InC\Persona3\Data\persona\battle_persona.h(8,8): error C2229: struct 'persona'에 크기가 0인 잘못된 배열이 있습니다.
+  (소스 파일 'test_printLog/test_printLog.c'을(를) 컴파일하는 중)
+  
+D:\git\Persona3InC\Persona3\Data\persona\battle_persona.h(15,15): error C2057: 상수 식이 필요합니다.
+  (소스 파일 'test_printLog/test_printLog.c'을(를) 컴파일하는 중)
+  
+D:\git\Persona3InC\Persona3\Data\persona\battle_persona.h(16,16): error C2057: 상수 식이 필요합니다.
+  (소스 파일 'test_printLog/test_printLog.c'을(를) 컴파일하는 중)
+  
+D:\git\Persona3InC\Persona3\Data\persona\battle_persona.h(16,6): error C2229: struct 'persona'에 크기가 0인 잘못된 배열이 있습니다.
+  (소스 파일 'test_printLog/test_printLog.c'을(를) 컴파일하는 중)
+  
+D:\git\Persona3InC\Persona3\Data\persona\battle_persona.h(17,2): error C2085: 'Persona': 정식 매개 변수 목록에 없습니다.
+  (소스 파일 'test_printLog/test_printLog.c'을(를) 컴파일하는 중)
+  
+D:\git\Persona3InC\Persona3\Data\persona\battle_persona.h(19,14): error C2085: 'Persona': 정식 매개 변수 목록에 없습니다.
+  (소스 파일 'test_printLog/test_printLog.c'을(를) 컴파일하는 중)
+  
+D:\git\Persona3InC\Persona3\Data\persona\battle_persona.h(19,22): error C2146: 구문 오류: ','이(가) 'empty' 식별자 앞에 없습니다.
+  (소스 파일 'test_printLog/test_printLog.c'을(를) 컴파일하는 중)
+  
+D:\git\Persona3InC\Persona3\Data\persona\battle_persona.h(20,14): error C2085: 'Persona': 정식 매개 변수 목록에 없습니다.
+  (소스 파일 'test_printLog/test_printLog.c'을(를) 컴파일하는 중)
+  
+D:\git\Persona3InC\Persona3\Data\persona\battle_persona.h(20,22): error C2146: 구문 오류: ','이(가) 'orpheus' 식별자 앞에 없습니다.
+  (소스 파일 'test_printLog/test_printLog.c'을(를) 컴파일하는 중)
+  
+D:\git\Persona3InC\Persona3\Data\player\battle_player.h(8,2): error C2061: 구문 오류: 식별자 'Persona'
+  (소스 파일 'test_printLog/test_printLog.c'을(를) 컴파일하는 중)
+  
+D:\git\Persona3InC\Persona3\Data\player\battle_player.h(11,1): error C2059: 구문 오류: '}'
+  (소스 파일 'test_printLog/test_printLog.c'을(를) 컴파일하는 중)
+  
+D:\git\Persona3InC\Persona3\Data\player\battle_player.h(28,2): error C2061: 구문 오류: 식별자 'PersonaList'
+  (소스 파일 'test_printLog/test_printLog.c'을(를) 컴파일하는 중)
+  
+D:\git\Persona3InC\Persona3\Data\player\battle_player.h(29,1): error C2059: 구문 오류: '}'
+  (소스 파일 'test_printLog/test_printLog.c'을(를) 컴파일하는 중)
+  
+D:\git\Persona3InC\Persona3\Data\player\battle_player.h(31,23): error C2143: 구문 오류: ')'이(가) '*' 앞에 없습니다.
+  (소스 파일 'test_printLog/test_printLog.c'을(를) 컴파일하는 중)
+  
+D:\git\Persona3InC\Persona3\Data\player\battle_player.h(31,23): error C2143: 구문 오류: '{'이(가) '*' 앞에 없습니다.
+  (소스 파일 'test_printLog/test_printLog.c'을(를) 컴파일하는 중)
+  
+D:\git\Persona3InC\Persona3\Data\player\battle_player.h(31,26): error C2059: 구문 오류: ')'
+  (소스 파일 'test_printLog/test_printLog.c'을(를) 컴파일하는 중)
+  
+D:\git\Persona3InC\Persona3\Data\player\battle_player.h(32,32): error C2146: 구문 오류: ')'이(가) 'p' 식별자 앞에 없습니다.
+  (소스 파일 'test_printLog/test_printLog.c'을(를) 컴파일하는 중)
+  
+D:\git\Persona3InC\Persona3\Data\player\battle_player.h(32,32): error C2061: 구문 오류: 식별자 'p'
+  (소스 파일 'test_printLog/test_printLog.c'을(를) 컴파일하는 중)
+  
+D:\git\Persona3InC\Persona3\Data\player\battle_player.h(32,32): error C2059: 구문 오류: ';'
+  (소스 파일 'test_printLog/test_printLog.c'을(를) 컴파일하는 중)
+  
+D:\git\Persona3InC\Persona3\Data\player\battle_player.h(32,33): error C2059: 구문 오류: ')'
+  (소스 파일 'test_printLog/test_printLog.c'을(를) 컴파일하는 중)
+  
+D:\git\Persona3InC\Persona3\Data\player\battle_player.h(33,27): error C2146: 구문 오류: ')'이(가) 'p' 식별자 앞에 없습니다.
+  (소스 파일 'test_printLog/test_printLog.c'을(를) 컴파일하는 중)
+  
+D:\git\Persona3InC\Persona3\Data\player\battle_player.h(33,27): error C2061: 구문 오류: 식별자 'p'
+  (소스 파일 'test_printLog/test_printLog.c'을(를) 컴파일하는 중)
+  
+D:\git\Persona3InC\Persona3\Data\player\battle_player.h(33,27): error C2059: 구문 오류: ';'
+  (소스 파일 'test_printLog/test_printLog.c'을(를) 컴파일하는 중)
+  
+D:\git\Persona3InC\Persona3\Data\player\battle_player.h(33,28): error C2059: 구문 오류: ','
+  (소스 파일 'test_printLog/test_printLog.c'을(를) 컴파일하는 중)
+  
+D:\git\Persona3InC\Persona3\Data\player\battle_player.h(33,48): error C2059: 구문 오류: ')'
+  (소스 파일 'test_printLog/test_printLog.c'을(를) 컴파일하는 중)
+  
+D:\git\Persona3InC\Persona3\Data\player\battle_player.h(41,2): error C2061: 구문 오류: 식별자 'Persona'
+  (소스 파일 'test_printLog/test_printLog.c'을(를) 컴파일하는 중)
+  
+D:\git\Persona3InC\Persona3\Data\player\battle_player.h(42,1): error C2059: 구문 오류: '}'
+  (소스 파일 'test_printLog/test_printLog.c'을(를) 컴파일하는 중)
+  
+D:\git\Persona3InC\Persona3\Test\test_printLog\test_printLog.c(3,15): error C2061: 구문 오류: 식별자 'orpheus'
+D:\git\Persona3InC\Persona3\Test\test_printLog\test_printLog.c(3,15): error C2059: 구문 오류: ';'
+D:\git\Persona3InC\Persona3\Test\test_printLog\test_printLog.c(3,23): error C2513: ' ': '=' 앞에 변수를 선언하지 않았습니다.
+D:\git\Persona3InC\Persona3\Test\test_printLog\test_printLog.c(15,15): error C2061: 구문 오류: 식별자 'empty'
+D:\git\Persona3InC\Persona3\Test\test_printLog\test_printLog.c(15,15): error C2059: 구문 오류: ';'
+D:\git\Persona3InC\Persona3\Test\test_printLog\test_printLog.c(15,21): error C2513: ' ': '=' 앞에 변수를 선언하지 않았습니다.
+D:\git\Persona3InC\Persona3\Test\test_printLog\test_printLog.c(29,2): error C2065: 'Player': 선언되지 않은 식별자입니다.
+D:\git\Persona3InC\Persona3\Test\test_printLog\test_printLog.c(29,9): error C2146: 구문 오류: ';'이(가) 'player' 식별자 앞에 없습니다.
+D:\git\Persona3InC\Persona3\Test\test_printLog\test_printLog.c(29,9): error C2065: 'player': 선언되지 않은 식별자입니다.
+D:\git\Persona3InC\Persona3\Test\test_printLog\test_printLog.c(30,2): error C2065: 'Player': 선언되지 않은 식별자입니다.
+D:\git\Persona3InC\Persona3\Test\test_printLog\test_printLog.c(30,8): error C2297: '*': 오른쪽 피연산자의 유형이 'int *'이므로 유효하지 않습니다.
+D:\git\Persona3InC\Persona3\Test\test_printLog\test_printLog.c(30,15): error C2065: 'player': 선언되지 않은 식별자입니다.
+D:\git\Persona3InC\Persona3\Test\test_printLog\test_printLog.c(36,12): error C2223: '->playerName' 왼쪽은 구조체/공용 구조체를 가리켜야 합니다.
+D:\git\Persona3InC\Persona3\Test\test_printLog\test_printLog.c(36,2): error C2198: 'char *strcpy(char *,const char *)': 호출에 인수가 너무 적습니다.
+D:\git\Persona3InC\Persona3\Test\test_printLog\test_printLog.c(37,5): error C2223: '->playerStatus' 왼쪽은 구조체/공용 구조체를 가리켜야 합니다.
+D:\git\Persona3InC\Persona3\Test\test_printLog\test_printLog.c(38,5): error C2223: '->personaList' 왼쪽은 구조체/공용 구조체를 가리켜야 합니다.
+D:\git\Persona3InC\Persona3\Test\test_printLog\test_printLog.c(38,20): error C2065: 'PersonaList': 선언되지 않은 식별자입니다.
+D:\git\Persona3InC\Persona3\Test\test_printLog\test_printLog.c(38,32): error C2143: 구문 오류: ';'이(가) '{' 앞에 없습니다.
+D:\git\Persona3InC\Persona3\Test\test_printLog\test_printLog.c(39,4): error C2065: 'orpheus': 선언되지 않은 식별자입니다.
+D:\git\Persona3InC\Persona3\Test\test_printLog\test_printLog.c(39,13): error C2065: 'empty': 선언되지 않은 식별자입니다.
+D:\git\Persona3InC\Persona3\Test\test_printLog\test_printLog.c(39,20): error C2065: 'empty': 선언되지 않은 식별자입니다.
+D:\git\Persona3InC\Persona3\Test\test_printLog\test_printLog.c(39,27): error C2065: 'empty': 선언되지 않은 식별자입니다.
+D:\git\Persona3InC\Persona3\Test\test_printLog\test_printLog.c(39,34): error C2065: 'empty': 선언되지 않은 식별자입니다.
+D:\git\Persona3InC\Persona3\Test\test_printLog\test_printLog.c(39,41): error C2065: 'empty': 선언되지 않은 식별자입니다.
+D:\git\Persona3InC\Persona3\Test\test_printLog\test_printLog.c(39,48): error C2065: 'empty': 선언되지 않은 식별자입니다.
+D:\git\Persona3InC\Persona3\Test\test_printLog\test_printLog.c(39,55): error C2065: 'empty': 선언되지 않은 식별자입니다.
+D:\git\Persona3InC\Persona3\Test\test_printLog\test_printLog.c(39,61): error C2143: 구문 오류: ';'이(가) '}' 앞에 없습니다.
+D:\git\Persona3InC\Persona3\Test\test_printLog\test_printLog.c(39,62): error C2143: 구문 오류: ';'이(가) ',' 앞에 없습니다.
+D:\git\Persona3InC\Persona3\Test\test_printLog\test_printLog.c(57,19): error C2065: 'player': 선언되지 않은 식별자입니다.
+D:\git\Persona3InC\Persona3\Test\test_printLog\test_printLog.c(57,26): error C2224: '.personaList' 왼쪽에는 구조체/공용 구조체 형식이 있어야 합니다.
+D:\git\Persona3InC\Persona3\Test\test_printLog\test_printLog.c(57,12): warning C4473: 'printf': 서식 문자열에 대한 인수가 충분하게 전달되지 않았습니다.
+      D:\git\Persona3InC\Persona3\Test\test_printLog\test_printLog.c(57,12):
+      자리 표시자 및 해당 매개 변수에는 variadic 인수가 1개 필요하지만 0개가 제공되었습니다.
+      D:\git\Persona3InC\Persona3\Test\test_printLog\test_printLog.c(57,12):
+      누락된 variadic 인수 1이(가) 서식 문자열 '%s'에 필요합니다.
+  
+D:\git\Persona3InC\Persona3\Test\test_printLog\test_printLog.c(88,1): error C1004: 예기치 않은 파일의 끝이 나타났습니다.

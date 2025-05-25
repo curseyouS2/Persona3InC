@@ -73,3 +73,5 @@ typedef struct abnormalstatusskill {	// 상태 이상
 	int cost;
 	int	weirdtype;	//상태이상 타입...
 }AbnormalStatus;
+
+//int wholeSkill[100]

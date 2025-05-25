@@ -7,5 +7,4 @@
 #include "../Data/persona/battle_persona.h"
 
 // 테스트용 리소스
-extern Player player
-extern Enemy testShadow;
+

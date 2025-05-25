@@ -1,0 +1,8 @@
+﻿  battle_player.c
+D:\git\Persona3InC\Persona3\Data\player\battle_player.c(27,16): error C2011: 'player': 'struct' 형식 재정의
+      D:\git\Persona3InC\Persona3\Data\player\battle_player.h(25,16):
+      'player' 선언을 참조하십시오.
+  
+D:\git\Persona3InC\Persona3\Data\player\battle_player.c(35,2): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  battle_status.c
+  코드를 생성하고 있습니다...

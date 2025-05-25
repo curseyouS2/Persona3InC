@@ -3,7 +3,7 @@
 // 이름, 인덱스, 페르소나 레벨, 공, 마, 속, 내, 운, {내성}, {스킬풀}
 /*
 typedef struct persona {
-	name personaName[20];
+	name personaName[100];
 	index personaIndex;
 	level personaLevel;
 	int stronger;
@@ -17,14 +17,35 @@ typedef struct persona {
 */
 
 
-Persona sample = 
-{ "샘플페르소나", 0,	1,
-1, 1, 1, 1, 1,					// 공, 마, 속, 내, 운
-{0, 0, 0, 0, 0, 0, 0, 0 ,0},	// 참, 타, 관, 화, 빙, 전, 풍, 명, 암
-{0, 0, 0, 0, 0, 0, 0, 0} };
+/*const Persona empty = {
+	.personaName = "-- 빈 슬롯 --",
+	.personaIndex = -1,
+	.personaLevel = 0,
+	.stronger = 0,
+	.intelligence = 0,
+	.speed = 0,
+	.duration = 0,
+	.luck = 0,
+	.weekness = {0},
+	.skillPool = {0}
+};
 
-Persona orpheus = 
+const Persona orpheus = {
+	.personaName = "오르페우스",
+	.personaIndex = 1,
+	.personaLevel = 1,
+	.stronger = 2,
+	.intelligence = 2,
+	.speed = 2,
+	.duration = 2,
+	.luck = 2,
+	.weekness = {0, 0, 0, 0, 0, 1, 0, 0 ,1},
+	.skillPool = {1, 2, 3, 0, 0, 0, 0, 0}
+};
+*/
+
+/*const Persona orpheus =
 { "오르페우스", 1, 1,
 2, 2, 2, 2, 2,
 {0, 0, 0, 0, 0, 1, 0, 0 ,1}, 	
-{1, 2, 3, 0, 0, 0, 0, 0} };
+{1, 2, 3, 0, 0, 0, 0, 0} };*/

@@ -4,7 +4,7 @@
 
 // 이름, 인덱스, 공, 마, 속, 내, 운, 내성, 스킬풀
 typedef struct persona {
-	name personaName[20];
+	name personaName[100];
 	index personaIndex;
 	level personaLevel;
 	stat stronger;
@@ -15,3 +15,6 @@ typedef struct persona {
 	int weekness[9];
 	int skillPool[8];
 }Persona;
+
+extern const Persona empty;
+extern const Persona orpheus;
