@@ -10,7 +10,9 @@ typedef struct playerstatus {	//player.h, aibo.h 에서 사용, 세부 능력치는 페르소
 	int hp;
 	int mp;
 	int buff[3];	//공, 방, 속
-	int debuff[3];	
+	int debuff[3];
+	int magicdouble;
+	int physicdouble;
 }PlayerStatus;
 
 // 적 스테이터스 

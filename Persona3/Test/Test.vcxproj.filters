@@ -16,15 +16,27 @@
     <Filter Include="test_printLog">
       <UniqueIdentifier>{19a65d4f-160f-4e0e-8aa7-b650d10d678f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="test_useSkill">
+      <UniqueIdentifier>{4d183fb1-0869-4f58-88d0-24034297e3f4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="test_printLog\test_printLog.h">
       <Filter>test_printLog</Filter>
     </ClInclude>
+    <ClInclude Include="test_useSkill.h">
+      <Filter>test_useSkill</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="test_printLog\test_printLog.c">
       <Filter>test_printLog</Filter>
+    </ClCompile>
+    <ClCompile Include="test_useSkill.c">
+      <Filter>test_useSkill</Filter>
+    </ClCompile>
+    <ClCompile Include="test_main.c">
+      <Filter>test_useSkill</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

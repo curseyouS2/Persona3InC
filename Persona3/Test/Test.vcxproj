@@ -128,9 +128,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="test_printLog\test_printLog.h" />
+    <ClInclude Include="test_useSkill.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="test_main.c" />
     <ClCompile Include="test_printLog\test_printLog.c" />
+    <ClCompile Include="test_useSkill.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

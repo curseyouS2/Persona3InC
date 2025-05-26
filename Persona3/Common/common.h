@@ -5,6 +5,8 @@
 # include<stdlib.h>
 # include<string.h>
 
+#include "../Data/data.h"
+
 // 매크로 정의
 	// 공격, 약점 타입
 # define SLASH 0
