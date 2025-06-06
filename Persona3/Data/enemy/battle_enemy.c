@@ -1,6 +1,5 @@
 #include "battle_enemy.h"
 
-/*
 typedef struct enemy
 {
 	char enemyName[20];			// Àû ÀÌ¸§

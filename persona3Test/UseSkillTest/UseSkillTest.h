@@ -1,4 +1,5 @@
-#define _CRT_SECURE_NO_WARNINGS
+# define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -14,7 +15,7 @@
 # define LIGHT 7
 # define DARK 8
 # define NONE 9
-# define EMPTY 10
+
 
 // 사용자 struct, type 정의
 typedef int index;	// 나중에 index의 int 모두 index로 바꿀 것...
@@ -33,7 +34,7 @@ typedef struct phycialttack {
 	double cost;
 	int amount;
 	int times;	 // 번 수
-	int target;	 // 적 단일, 다수 0, 1 / 아군 단일, 다수 2, 3 / 전체 4
+	int target;
 	int accuracy;
 	int property; // 스킬 속성
 }PhysicalAttack;
@@ -92,7 +93,7 @@ typedef union skillTypeData {
 }SkillTypeData;
 
 typedef struct skill {
-	char skillname[100];
+	char skillName[100];
 	SkillType skillType;
 	SkillTypeData skillData;
 }Skill;
@@ -150,7 +151,7 @@ typedef struct enemystatus {
 	int debuff[3];
 }EnemyStatus;
 typedef struct enemy{
-	char enemyName[20];			// 적 이름
+	char enemyName[100];			// 적 이름
 	index enemyIndex;			// 적 인덱스	
 	EnemyStatus enemyStatus;
 	int enemyExp;				// 획득 경험치
@@ -159,6 +160,7 @@ typedef struct enemy{
 
 // 함수 모음
 void initPlayer(Player* player);
+Skill* checkSkill(Player* player, char str[]);
 
 int physicDouble(Player* player);
 int magicDouble(Player* player);
@@ -168,6 +170,17 @@ void heal(Skill* skill, Player* player);
 int imDeath(Skill* skill, Player* player, Enemy* enemy);
 void useSkill(Skill* skill, Player* player, Persona* persona, Enemy* enemy);
 
+// 스킬 구현
+extern const Skill Noskill;
+extern const Skill Slash;
+extern const Skill Agi;
+extern const Skill Bufu;
+extern const Skill Zio;
+extern const Skill Garu;
+extern const Skill Megido;
+
 // 페르소나 구현
-Persona orpheus;
-Persona empty;
+extern Persona orpheus;
+extern Persona empty;
+
+extern Enemy testEnemy;

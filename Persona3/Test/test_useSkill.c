@@ -1,6 +1,10 @@
 #include "test_useSkill.h"
 
-typedef union skillData {
+typedef enum skillType {	// 스킬 종류
+	PHYSICAL, MAGIC, IMDEATH, HEAL, BUFF, DEBUFF, DOUBLEP, ABNORMAL
+}SkillType;
+
+typedef union skillTypeData {	//공용체로 구현, 스킬 별 작동 방식...
 	PhysicalAttack physic;
 	MagicAttack magic;
 	ImmediateDeath imDeath;
@@ -9,16 +13,12 @@ typedef union skillData {
 	DeBuff debuff;
 	DoublePower doubleP;
 	AbnormalStatus abnormal;
-}SkillData;
+}SkillTypeData;
 
-typedef enum skillType {
-	PHYSICAL, MAGIC, IMDEATH, HEAL, BUFF, DEBUFF, DOUBLEP, ABNORMAL
-}SkillType;
-
-typedef struct skill {
+typedef struct skill {	//스킬 구조체 -> 이름, 스킬 종류, 종류 별 작동 방식
 	name skillname[100];
 	SkillType skillType;	//enum
-	SkillData skillData;	//union
+	SkillTypeData skillData;	//union
 }Skill;
 
 // 테스트용 스킬 구현////////////
@@ -33,11 +33,12 @@ typedef struct skill {
 	}PhysicalAttack;*/
 
 Skill testHITskill = { "테스트타격스킬", PHYSICAL, {0.07, 10, 1, 0, 100, HIT} };
-int physicDouble(Player* player)
+
+int physicDouble(Player* player)	//차지 활성화?
 {
 	return player->playerStatus.physicdouble;
 }
-int magicDouble(Player* player)
+int magicDouble(Player* player)	//컨센트레이트 활성화?
 {
 	return player->playerStatus.magicdouble;
 }
@@ -59,9 +60,15 @@ int calcDamage(Skill* skill, Player* player, int amount, int stat)
 	return damage;
 }
 
-void attack(Player* player, int damage, Enemy* enemy, menu);
+void attack(Player* player, int damage, Enemy* enemy)
+{
+	enemy->enemystatus.hp -= damage;
+}
 
-
+void imDeath(Enemy* enemy)
+{
+	
+}
 
 void useSkill(Skill* skill, Player* player, Persona* persona)
 {
