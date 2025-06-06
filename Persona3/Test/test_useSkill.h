@@ -1,5 +1,6 @@
 #pragma once
 #include "../Common/common.h"
+#include "../Data/data.h"
 
 typedef struct phycialttack {
 	double cost;

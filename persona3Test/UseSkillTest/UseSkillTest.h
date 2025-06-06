@@ -1,3 +1,5 @@
+# define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -16,15 +18,12 @@
 
 
 // 사용자 struct, type 정의
-typedef char name;
 typedef int index;	// 나중에 index의 int 모두 index로 바꿀 것...
 typedef int level;
 typedef int stat;
 
 // 필요 경험치 배열 [0]: 1 -> 2
-int nextLevelExp[9] = {
-	7, 21, 63, 189, 577, 1721, 2523, 3750, 5102
-};
+int nextLevelExp[9];
 typedef struct Level {
 	level nowLevel;
 	int nowExp;	//nowExp >= nextLevelExp[nowLevel-1] -> 레벨업
@@ -80,7 +79,7 @@ typedef struct abnormalstatusskill {	// 상태 이상
 }AbnormalStatus;
 
 typedef enum skillType {
-	PHYSICAL, MAGIC, IMDEATH, HEAL, BUFF, DEBUFF, DOUBLEP, ABNORMAL
+	PHYSICAL, MAGIC, IMDEATH, HEAL, BUFF, DEBUFF, DOUBLEP, ABNORMAL, NOSKILL
 }SkillType;
 typedef union skillTypeData {
 	PhysicalAttack physic;
@@ -94,7 +93,7 @@ typedef union skillTypeData {
 }SkillTypeData;
 
 typedef struct skill {
-	name skillname[100];
+	char skillName[100];
 	SkillType skillType;
 	SkillTypeData skillData;
 }Skill;
@@ -102,7 +101,7 @@ typedef struct skill {
 // 페르소나 정의
 typedef struct persona {
 	// 이름, 인덱스, 공, 마, 속, 내, 운, 내성, 스킬풀
-	name personaName[100];
+	char personaName[100];
 	index personaIndex;
 	level personaLevel;
 	stat stronger;
@@ -111,7 +110,7 @@ typedef struct persona {
 	stat duration;
 	stat luck;
 	int weekness[9];
-	Skill skillPool[8];
+	const Skill* skillPool[8];
 }Persona;
 
 // 플레이어 정의
@@ -130,7 +129,7 @@ typedef struct playerPersonaList {
 	int nowPersona;	//현재 장착한 페르소나 
 }PersonaList;
 typedef struct player {
-	name playerName[100];
+	char playerName[100];
 	Level playerLevel;
 	PlayerStatus playerStatus;
 	PersonaList personaList;	
@@ -152,7 +151,7 @@ typedef struct enemystatus {
 	int debuff[3];
 }EnemyStatus;
 typedef struct enemy{
-	name enemyName[20];			// 적 이름
+	char enemyName[100];			// 적 이름
 	index enemyIndex;			// 적 인덱스	
 	EnemyStatus enemyStatus;
 	int enemyExp;				// 획득 경험치
@@ -161,6 +160,7 @@ typedef struct enemy{
 
 // 함수 모음
 void initPlayer(Player* player);
+Skill* checkSkill(Player* player, char str[]);
 
 int physicDouble(Player* player);
 int magicDouble(Player* player);
@@ -170,6 +170,17 @@ void heal(Skill* skill, Player* player);
 int imDeath(Skill* skill, Player* player, Enemy* enemy);
 void useSkill(Skill* skill, Player* player, Persona* persona, Enemy* enemy);
 
+// 스킬 구현
+extern const Skill Noskill;
+extern const Skill Slash;
+extern const Skill Agi;
+extern const Skill Bufu;
+extern const Skill Zio;
+extern const Skill Garu;
+extern const Skill Megido;
+
 // 페르소나 구현
-Persona orpheus;
-Persona empty;
+extern Persona orpheus;
+extern Persona empty;
+
+extern Enemy testEnemy;

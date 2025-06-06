@@ -1,14 +1,35 @@
-#include "UseSkillTest.h"
-
+ï»¿#include "UseSkillTest.h"
+int nextLevelExp[9] = {
+	7, 21, 63, 189, 577, 1721, 2523, 3750, 5102
+};
 void initPlayer(Player* player) 
 {
-	strcpy(player->playerName, "À¯Å°");
-	player->playerStatus = (PlayerStatus){ 100, 100, 100, 100, {0,0,0}, {0,0,0} };	//±¸Á¶Ã¼ ¸®ÅÍ·² »ı¼º...Çüº¯È¯ÀÌ ¾Æ´Ï¶ó!!
+	strcpy(player->playerName, "ìœ í‚¤");
+	player->playerStatus = (PlayerStatus){ 100, 100, 100, 100, {0,0,0}, {0,0,0} };	//êµ¬ì¡°ì²´ ë¦¬í„°ëŸ´ ìƒì„±...í˜•ë³€í™˜ì´ ì•„ë‹ˆë¼!!
 	player->personaList = (PersonaList){
 	{ orpheus, empty, empty, empty, empty, empty, empty, empty }, 1, 0 };  // numPersona, nowpersona
 }
 
-// 2¹è ÆÇÁ¤
+Skill* checkSkill(Player* player, char str[])
+{
+	str[0] = '\0';
+	int isExist = 0;
+	do {
+		scanf("%s", str);
+		for (int i = 0;i < 8;i++) 
+		{
+			if (player->personaList.playerPersona[player->personaList.nowPersona].skillPool[i] == NULL) continue; // â­ NULL ì²´í¬ ë¨¼ì €
+			if (!strcmp(str, player->personaList.playerPersona[player->personaList.nowPersona].skillPool[i]->skillName))
+			{
+				isExist = 1;
+				return player->personaList.playerPersona[player->personaList.nowPersona].skillPool[i];
+			}
+		}
+		printf("í•´ë‹¹ ìŠ¤í‚¬ì€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤. ë‹¤ì‹œ ì…ë ¥í•˜ì‹­ì‹œì˜¤...\n");
+	} while (isExist == 0);
+}
+
+// 2ë°° íŒì •
 int physicDouble(Player* player) 
 {
 	return player->playerStatus.physicdouble;
@@ -18,13 +39,13 @@ int magicDouble(Player* player)
 	return player->playerStatus.magicdouble;
 }
 
-// µ¥¹ÌÁö °è»ê(useSkill µîÀÇ ³»ºÎ¿¡¼­ »ç¿ë)
+// ë°ë¯¸ì§€ ê³„ì‚°(useSkill ë“±ì˜ ë‚´ë¶€ì—ì„œ ì‚¬ìš©)
 int calcDamage(Skill* skill, Player* player, int amount, stat bonus)
 {
 	int damage = amount;
 	int statBonus = bonus;
 	damage += statBonus;
-	if (player->playerStatus.buff[0])	//°øÁõ ÀÖ´Ù¸é
+	if (player->playerStatus.buff[0])	//ê³µì¦ ìˆë‹¤ë©´
 	{
 		int buffBonus = 0.3 * damage;
 		damage += buffBonus;
@@ -40,13 +61,13 @@ int calcDamage(Skill* skill, Player* player, int amount, stat bonus)
 	return damage;
 }
 
-// ½ÇÁ¦·Î °ø°İ	... ¸íÁß È®·ü °è»ê, 
+// ì‹¤ì œë¡œ ê³µê²©	... ëª…ì¤‘ í™•ë¥  ê³„ì‚°, 
 void attack(int damage, Enemy* enemy)
 {
 
 }
-// Èú Àû¿ë
-void heal(Skill* skill, Player* player)	//³ªÁß¿¡ aibo Ãß°¡ÇÒ °Í ¾Æ´Ï¸é aibo¶û enemy¶û °°Àº ±¸Á¶·Î Â¥´Â°Ô ³ªÀ»Áöµµ
+// í ì ìš©
+void heal(Skill* skill, Player* player)	//ë‚˜ì¤‘ì— aibo ì¶”ê°€í•  ê²ƒ ì•„ë‹ˆë©´ aiboë‘ enemyë‘ ê°™ì€ êµ¬ì¡°ë¡œ ì§œëŠ”ê²Œ ë‚˜ì„ì§€ë„
 {
 	int currentHp = player->playerStatus.hp,
 		healAmount = skill->skillData.heal.amount,
@@ -55,8 +76,8 @@ void heal(Skill* skill, Player* player)	//³ªÁß¿¡ aibo Ãß°¡ÇÒ °Í ¾Æ´Ï¸é aibo¶û en
 	if (currentHp > maxHp)	currentHp = maxHp;
 }
 
-// Áï»ç±â È®·ü °è»ê 
-int imDeath(Skill* skill, Player* player, Enemy* enemy) // ±âº» ¸íÁß·ü, ÇÃ·¹ÀÌ¾î/Àû È¸ÇÇ-¸íÁß ¹öÇÁ °è»ê)
+// ì¦‰ì‚¬ê¸° í™•ë¥  ê³„ì‚° 
+int imDeath(Skill* skill, Player* player, Enemy* enemy) // ê¸°ë³¸ ëª…ì¤‘ë¥ , í”Œë ˆì´ì–´/ì  íšŒí”¼-ëª…ì¤‘ ë²„í”„ ê³„ì‚°)
 {
 	int defaultChance = skill->skillData.imDeath.accuracy,
 		bonus1 = 0, bonus2 = 0, bonus3 = 0;
@@ -73,21 +94,21 @@ int imDeath(Skill* skill, Player* player, Enemy* enemy) // ±âº» ¸íÁß·ü, ÇÃ·¹ÀÌ¾î
 		bonus3 = defaultChance * 0.3;
 	}
 	int realChance = defaultChance + bonus1 - bonus2 + bonus3;
-	srand(time(NULL));	//·£´ı°ªÀÌ realChanceº¸´Ù Å©¸é ½ÇÆĞ
-	int nowChance = rand() % 100 + 1;	//1ºÎÅÍ 100±îÁö
+	srand(time(NULL));	//ëœë¤ê°’ì´ realChanceë³´ë‹¤ í¬ë©´ ì‹¤íŒ¨
+	int nowChance = rand() % 100 + 1;	//1ë¶€í„° 100ê¹Œì§€
 	if (nowChance > realChance) 
 	{
-		printf("Áï»ç±â È¸ÇÇ!\n");
+		printf("ì¦‰ì‚¬ê¸° íšŒí”¼!\n");
 		return 0;
 	}
 	else
 	{
-		printf("Áï»ç±â ¸íÁß!\n");
+		printf("ì¦‰ì‚¬ê¸° ëª…ì¤‘!\n");
 		return 1;
 	}
 }
 
-// ½ºÅ³ »ç¿ë
+// ìŠ¤í‚¬ ì‚¬ìš©
 void useSkill(Skill* skill, Player* player, Persona* persona, Enemy* enemy)
 {
 	int damage = 0;
@@ -132,17 +153,23 @@ void useSkill(Skill* skill, Player* player, Persona* persona, Enemy* enemy)
 
 }
 
-// ½ºÅ³ ±¸Çö
+// ìŠ¤í‚¬ êµ¬í˜„
 /*
 	name skillname[100];
 	SkillType skillType;
 	SkillTypeData skillData;
 */
-Skill Agi = { "¾Æ±â", , 
-}
+const Skill Noskill = { "ë¹ˆ ìŠ¬ë¡¯", NOSKILL, {.physic = {0, 0, 0, 0, 0, SLASH}} };
+
+const Skill Slash = { "ìŠ¬ë˜ì‰¬", PHYSICAL, {.physic = {0.07, 50, 1, 0, 100, SLASH}} };
+const Skill Agi = { "ì•„ê¸°", MAGIC, {.magic = {10, 50, 1, 0, 50, FIRE}} };
+const Skill Bufu = { "ë¶€í", MAGIC, {.magic = {10, 50, 1, 0, 50, ICE}} };
+const Skill Zio = { "ì§€ì˜¤", MAGIC, {.magic = {10, 50, 1, 0, 50, ELECTRIC}} };
+const Skill Garu = { "ê°ˆ", MAGIC, {.magic = {10, 50, 1, 0, 50, WIND}} };
+const Skill Megido = { "ë©”ê¸°ë„", MAGIC, {.magic = {50, 150, 1, 1, 90, NONE}} };
 
 
-// Æä¸£¼Ò³ª ±¸Çö
+// í˜ë¥´ì†Œë‚˜ êµ¬í˜„
 /*
 	name personaName[100];
 	index personaIndex;
@@ -156,9 +183,45 @@ Skill Agi = { "¾Æ±â", ,
 	Skill skillPool[8];
 */
 
-Persona orpheus = {
-	"¿À¸£Æä¿ì½º", 1,
-	10, 10, 10, 10, 10,
-	{0, 0, 0, 0, 0, 0, 0, 0, 0}
-}
+Persona empty = {
+	"ë¹ˆ ìŠ¬ë¡¯", 0, 00,
+	0, 0, 0, 0, 0,
+	{0, 0, 0, 0, 0, 0, 0, 0, 0},
+	{&Noskill, &Noskill, &Noskill, &Noskill, &Noskill, &Noskill, &Noskill, &Noskill}
+};
 
+Persona orpheus = {
+	"ì˜¤ë¥´í˜ìš°ìŠ¤", 1, 10,
+	10, 10, 10, 10, 10,
+	{0, 0, 0, 0, 0, 0, 0, 0, 0},
+	{&Slash, &Agi, &Bufu, &Zio, &Garu, &Megido, &Noskill, &Noskill}
+};
+
+// ì  êµ¬í˜„
+/*
+EnemyStatus
+	int hpMax;
+	int mpMax;
+	int hp;
+	int mp;
+	stat stronger;
+	stat intelligence;
+	stat speed;
+	stat duration;
+	stat luck;
+	int weekness[9];
+	int buff[3];	//ê³µ, ë°©, ì†
+	int debuff[3];
+Enemy
+	char enemyName[100];			// ì  ì´ë¦„
+	index enemyIndex;			// ì  ì¸ë±ìŠ¤	
+	EnemyStatus enemyStatus;
+	int enemyExp;				// íšë“ ê²½í—˜ì¹˜
+	int enemyDropItem[3];		// ë“œë¡­ ì•„ì´í…œ
+
+*/
+
+Enemy testEnemy =
+{ "í…ŒìŠ¤íŠ¸ìš© ì ", 0, {100, 100, 100, 100, 10, 10, 10, 10, 10,
+{0,0,0,0,0,0,0,0,0},{0,0,0}, {0,0,0}},
+25, {0, 0, 1} };

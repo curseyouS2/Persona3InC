@@ -1,5 +1,5 @@
 #include "battle_player.h"
-/*
+
 // 플레이어 페르소나 저장 구조체
 typedef struct playerPersonaList {	
 	Persona playerPersona[];
@@ -23,7 +23,7 @@ typedef struct player {
 	PersonaList personaList;	// 페르소나 얻을 때 동적 할당
 }Player;
 
-*/
+
 typedef struct player {
 	name playerName[100];
 	PlayerStatus playerStatus;
