@@ -3,56 +3,16 @@
   "WorkspaceRootPath": "D:\\git\\Persona3InC\\Persona3\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D43185E6-EBDD-4B30-8B62-9890ABA5BE5A}|Test\\Test.vcxproj|D:\\git\\Persona3InC\\Persona3\\Test\\test_printLog\\test_printLog.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D43185E6-EBDD-4B30-8B62-9890ABA5BE5A}|Test\\Test.vcxproj|solutionrelative:Test\\test_printLog\\test_printLog.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{D43185E6-EBDD-4B30-8B62-9890ABA5BE5A}|Test\\Test.vcxproj|D:\\git\\Persona3InC\\Persona3\\Test\\test_useSkill.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D43185E6-EBDD-4B30-8B62-9890ABA5BE5A}|Test\\Test.vcxproj|solutionrelative:Test\\test_useSkill.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{396D96A1-2602-4E77-A6E1-FA2E83685AF1}|Data\\Data.vcxproj|D:\\git\\Persona3InC\\Persona3\\Data\\persona\\battle_persona.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{396D96A1-2602-4E77-A6E1-FA2E83685AF1}|Data\\Data.vcxproj|solutionrelative:Data\\persona\\battle_persona.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{D43185E6-EBDD-4B30-8B62-9890ABA5BE5A}|Test\\Test.vcxproj|D:\\git\\Persona3InC\\Persona3\\Test\\test_useSkill.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D43185E6-EBDD-4B30-8B62-9890ABA5BE5A}|Test\\Test.vcxproj|solutionrelative:Test\\test_useSkill.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{396D96A1-2602-4E77-A6E1-FA2E83685AF1}|Data\\Data.vcxproj|D:\\git\\Persona3InC\\Persona3\\Data\\skills\\battle_skills.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{396D96A1-2602-4E77-A6E1-FA2E83685AF1}|Data\\Data.vcxproj|solutionrelative:Data\\skills\\battle_skills.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{396D96A1-2602-4E77-A6E1-FA2E83685AF1}|Data\\Data.vcxproj|D:\\git\\Persona3InC\\Persona3\\Data\\skills\\battle_skills.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{396D96A1-2602-4E77-A6E1-FA2E83685AF1}|Data\\Data.vcxproj|solutionrelative:Data\\skills\\battle_skills.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{396D96A1-2602-4E77-A6E1-FA2E83685AF1}|Data\\Data.vcxproj|D:\\git\\Persona3InC\\Persona3\\Data\\player\\battle_player.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{396D96A1-2602-4E77-A6E1-FA2E83685AF1}|Data\\Data.vcxproj|solutionrelative:Data\\player\\battle_player.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{396D96A1-2602-4E77-A6E1-FA2E83685AF1}|Data\\Data.vcxproj|D:\\git\\Persona3InC\\Persona3\\Data\\player\\battle_player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{396D96A1-2602-4E77-A6E1-FA2E83685AF1}|Data\\Data.vcxproj|solutionrelative:Data\\player\\battle_player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{396D96A1-2602-4E77-A6E1-FA2E83685AF1}|Data\\Data.vcxproj|D:\\git\\Persona3InC\\Persona3\\Data\\persona\\battle_persona.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{396D96A1-2602-4E77-A6E1-FA2E83685AF1}|Data\\Data.vcxproj|solutionrelative:Data\\persona\\battle_persona.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{396D96A1-2602-4E77-A6E1-FA2E83685AF1}|Data\\Data.vcxproj|D:\\git\\Persona3InC\\Persona3\\Data\\data.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{396D96A1-2602-4E77-A6E1-FA2E83685AF1}|Data\\Data.vcxproj|solutionrelative:Data\\data.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EFA9886C-F305-4210-B53E-4C387BB5FDB0}|Common\\Common.vcxproj|D:\\git\\Persona3InC\\Persona3\\Common\\common.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{EFA9886C-F305-4210-B53E-4C387BB5FDB0}|Common\\Common.vcxproj|solutionrelative:Common\\common.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D43185E6-EBDD-4B30-8B62-9890ABA5BE5A}|Test\\Test.vcxproj|D:\\git\\Persona3InC\\Persona3\\Test\\test_printLog\\test_printLog.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{D43185E6-EBDD-4B30-8B62-9890ABA5BE5A}|Test\\Test.vcxproj|solutionrelative:Test\\test_printLog\\test_printLog.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{396D96A1-2602-4E77-A6E1-FA2E83685AF1}|Data\\Data.vcxproj|D:\\git\\Persona3InC\\Persona3\\Data\\enemy\\battle_enemy.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{396D96A1-2602-4E77-A6E1-FA2E83685AF1}|Data\\Data.vcxproj|solutionrelative:Data\\enemy\\battle_enemy.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{396D96A1-2602-4E77-A6E1-FA2E83685AF1}|Data\\Data.vcxproj|D:\\git\\Persona3InC\\Persona3\\Data\\status\\battle_status.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{396D96A1-2602-4E77-A6E1-FA2E83685AF1}|Data\\Data.vcxproj|solutionrelative:Data\\status\\battle_status.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EFA9886C-F305-4210-B53E-4C387BB5FDB0}|Common\\Common.vcxproj|D:\\git\\Persona3InC\\Persona3\\Common\\common.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{EFA9886C-F305-4210-B53E-4C387BB5FDB0}|Common\\Common.vcxproj|solutionrelative:Common\\common.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{D43185E6-EBDD-4B30-8B62-9890ABA5BE5A}|Test\\Test.vcxproj|D:\\git\\Persona3InC\\Persona3\\Test\\test_main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D43185E6-EBDD-4B30-8B62-9890ABA5BE5A}|Test\\Test.vcxproj|solutionrelative:Test\\test_main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -62,196 +22,45 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 5,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "battle_skills.c",
-              "DocumentMoniker": "D:\\git\\Persona3InC\\Persona3\\Data\\skills\\battle_skills.c",
-              "RelativeDocumentMoniker": "Data\\skills\\battle_skills.c",
-              "ToolTip": "D:\\git\\Persona3InC\\Persona3\\Data\\skills\\battle_skills.c",
-              "RelativeToolTip": "Data\\skills\\battle_skills.c",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2025-05-25T20:11:05.872Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "battle_skills.h",
-              "DocumentMoniker": "D:\\git\\Persona3InC\\Persona3\\Data\\skills\\battle_skills.h",
-              "RelativeDocumentMoniker": "Data\\skills\\battle_skills.h",
-              "ToolTip": "D:\\git\\Persona3InC\\Persona3\\Data\\skills\\battle_skills.h",
-              "RelativeToolTip": "Data\\skills\\battle_skills.h",
-              "ViewState": "AgIAADMAAAAAAAAAAAAAAEwAAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-25T20:11:03.211Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "battle_player.h",
-              "DocumentMoniker": "D:\\git\\Persona3InC\\Persona3\\Data\\player\\battle_player.h",
-              "RelativeDocumentMoniker": "Data\\player\\battle_player.h",
-              "ToolTip": "D:\\git\\Persona3InC\\Persona3\\Data\\player\\battle_player.h",
-              "RelativeToolTip": "Data\\player\\battle_player.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-20T15:18:09.773Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "battle_player.c",
-              "DocumentMoniker": "D:\\git\\Persona3InC\\Persona3\\Data\\player\\battle_player.c",
-              "RelativeDocumentMoniker": "Data\\player\\battle_player.c",
-              "ToolTip": "D:\\git\\Persona3InC\\Persona3\\Data\\player\\battle_player.c",
-              "RelativeToolTip": "Data\\player\\battle_player.c",
-              "ViewState": "AgIAACEAAAAAAAAAAAAAACQAAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2025-05-20T17:36:20.604Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "battle_persona.h",
-              "DocumentMoniker": "D:\\git\\Persona3InC\\Persona3\\Data\\persona\\battle_persona.h",
-              "RelativeDocumentMoniker": "Data\\persona\\battle_persona.h",
-              "ToolTip": "D:\\git\\Persona3InC\\Persona3\\Data\\persona\\battle_persona.h",
-              "RelativeToolTip": "Data\\persona\\battle_persona.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-25T08:13:04.618Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "battle_persona.c",
-              "DocumentMoniker": "D:\\git\\Persona3InC\\Persona3\\Data\\persona\\battle_persona.c",
-              "RelativeDocumentMoniker": "Data\\persona\\battle_persona.c",
-              "ToolTip": "D:\\git\\Persona3InC\\Persona3\\Data\\persona\\battle_persona.c",
-              "RelativeToolTip": "Data\\persona\\battle_persona.c",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAACsAAAACAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2025-05-20T17:36:06.205Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "common.h",
-              "DocumentMoniker": "D:\\git\\Persona3InC\\Persona3\\Common\\common.h",
-              "RelativeDocumentMoniker": "Common\\common.h",
-              "ToolTip": "D:\\git\\Persona3InC\\Persona3\\Common\\common.h",
-              "RelativeToolTip": "Common\\common.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-25T08:14:01.405Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "battle_status.h",
-              "DocumentMoniker": "D:\\git\\Persona3InC\\Persona3\\Data\\status\\battle_status.h",
-              "RelativeDocumentMoniker": "Data\\status\\battle_status.h",
-              "ToolTip": "D:\\git\\Persona3InC\\Persona3\\Data\\status\\battle_status.h",
-              "RelativeToolTip": "Data\\status\\battle_status.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-25T08:18:05.31Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "battle_enemy.h",
-              "DocumentMoniker": "D:\\git\\Persona3InC\\Persona3\\Data\\enemy\\battle_enemy.h",
-              "RelativeDocumentMoniker": "Data\\enemy\\battle_enemy.h",
-              "ToolTip": "D:\\git\\Persona3InC\\Persona3\\Data\\enemy\\battle_enemy.h",
-              "RelativeToolTip": "Data\\enemy\\battle_enemy.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-20T12:50:51.211Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "common.c",
-              "DocumentMoniker": "D:\\git\\Persona3InC\\Persona3\\Common\\common.c",
-              "RelativeDocumentMoniker": "Common\\common.c",
-              "ToolTip": "D:\\git\\Persona3InC\\Persona3\\Common\\common.c",
-              "RelativeToolTip": "Common\\common.c",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2025-05-20T12:50:26.623Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "data.h",
-              "DocumentMoniker": "D:\\git\\Persona3InC\\Persona3\\Data\\data.h",
-              "RelativeDocumentMoniker": "Data\\data.h",
-              "ToolTip": "D:\\git\\Persona3InC\\Persona3\\Data\\data.h",
-              "RelativeToolTip": "Data\\data.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-20T17:43:19.323Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Orientation": 0,
-      "VerticalTabListWidth": 256,
-      "FloatingWindowState": {
-        "Id": "5f7e4af5-a097-4ce8-a407-217d0d7ffa3f",
-        "Display": 1,
-        "X": 259,
-        "Y": 314,
-        "Width": 1555,
-        "Height": 772,
-        "WindowState": 0
-      },
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
           "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "test_printLog.c",
-              "DocumentMoniker": "D:\\git\\Persona3InC\\Persona3\\Test\\test_printLog\\test_printLog.c",
-              "RelativeDocumentMoniker": "Test\\test_printLog\\test_printLog.c",
-              "ToolTip": "D:\\git\\Persona3InC\\Persona3\\Test\\test_printLog\\test_printLog.c",
-              "RelativeToolTip": "Test\\test_printLog\\test_printLog.c",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2025-05-20T17:35:28.778Z",
+              "Title": "test_useSkill.h",
+              "DocumentMoniker": "D:\\git\\Persona3InC\\Persona3\\Test\\test_useSkill.h",
+              "RelativeDocumentMoniker": "Test\\test_useSkill.h",
+              "ToolTip": "D:\\git\\Persona3InC\\Persona3\\Test\\test_useSkill.h",
+              "RelativeToolTip": "Test\\test_useSkill.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-26T11:47:11.569Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "test_printLog.h",
-              "DocumentMoniker": "D:\\git\\Persona3InC\\Persona3\\Test\\test_printLog\\test_printLog.h",
-              "RelativeDocumentMoniker": "Test\\test_printLog\\test_printLog.h",
-              "ToolTip": "D:\\git\\Persona3InC\\Persona3\\Test\\test_printLog\\test_printLog.h",
-              "RelativeToolTip": "Test\\test_printLog\\test_printLog.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-20T17:35:31.234Z",
+              "DocumentIndex": 1,
+              "Title": "test_useSkill.c",
+              "DocumentMoniker": "D:\\git\\Persona3InC\\Persona3\\Test\\test_useSkill.c",
+              "RelativeDocumentMoniker": "Test\\test_useSkill.c",
+              "ToolTip": "D:\\git\\Persona3InC\\Persona3\\Test\\test_useSkill.c",
+              "RelativeToolTip": "Test\\test_useSkill.c",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2025-05-26T11:47:10.95Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "test_main.c",
+              "DocumentMoniker": "D:\\git\\Persona3InC\\Persona3\\Test\\test_main.c",
+              "RelativeDocumentMoniker": "Test\\test_main.c",
+              "ToolTip": "D:\\git\\Persona3InC\\Persona3\\Test\\test_main.c",
+              "RelativeToolTip": "Test\\test_main.c",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2025-05-26T11:47:10.194Z",
               "EditorCaption": ""
             }
           ]

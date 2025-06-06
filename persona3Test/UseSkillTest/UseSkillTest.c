@@ -1,5 +1,11 @@
 #include "UseSkillTest.h"
 
+// 경험치
+int nextLevelExp[9] = {
+	7, 21, 63, 189, 577, 1721, 2523, 3750, 5102
+};
+
+
 void initPlayer(Player* player) 
 {
 	strcpy(player->playerName, "유키");
@@ -136,10 +142,28 @@ void useSkill(Skill* skill, Player* player, Persona* persona, Enemy* enemy)
 /*
 	name skillname[100];
 	SkillType skillType;
-	SkillTypeData skillData;
+		PHYSICAL, MAGIC, IMDEATH, HEAL, BUFF, DEBUFF, DOUBLEP, ABNORMAL
+	SkillTypeData skillData; 
+		PhysicalAttack physic;
+		MagicAttack magic;
+		ImmediateDeath imDeath;
+		Heal heal;
+		Buff buff;
+		DeBuff debuff;
+		DoublePower doubleP;
+		AbnormalStatus abnormal;
 */
-Skill Agi = { "아기", , 
-}
+
+// 스킬 없음
+const Skill NoSkill = { " ", NOSKILL, {.physic = {0, 0, 0, 0, 0, SLASH}} };
+
+//
+const Skill Slash = { "슬래쉬", PHYSICAL, {.physic = {0.07, 50, 1, 0, 100, SLASH}} };
+const Skill Agi = { "아기", MAGIC, {.magic = {10, 50, 1, 0, 50, FIRE}} };
+const Skill Bufu = { "부흐", MAGIC, {.magic = {10, 50, 1, 0, 50, ICE}} };
+const Skill Zio = { "지오", MAGIC, {.magic = {10, 50, 1, 0, 50, ELECTRIC}} };
+const Skill Garu = { "갈", MAGIC, {.magic = {10, 50, 1, 0, 50, WIND}} };
+const Skill Megido = { "메기도", MAGIC, {.magic = {50, 150, 1, 1, 90, NONE}} };
 
 
 // 페르소나 구현
@@ -153,12 +177,14 @@ Skill Agi = { "아기", ,
 	stat duration;
 	stat luck;
 	int weekness[9];
-	Skill skillPool[8];
+	Skill* skillPool[8];
 */
 
 Persona orpheus = {
-	"오르페우스", 1,
+	"오르페우스", 1, 1,
 	10, 10, 10, 10, 10,
-	{0, 0, 0, 0, 0, 0, 0, 0, 0}
-}
+	{0, 0, 0, 0, 0, 0, 0, 0, 0},
+	{&Slash, &Agi, &Bufu, &Zio, &Garu, &Megido, &NoSkill, &NoSkill}
+};
 
+// 적 구현

@@ -1,0 +1,12 @@
+﻿  UseSkillTest.c
+D:\git\Persona3InC\persona3Test\UseSkillTest\UseSkillTest.c(35,23): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\git\Persona3InC\persona3Test\UseSkillTest\UseSkillTest.c(71,26): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\git\Persona3InC\persona3Test\UseSkillTest\UseSkillTest.c(75,26): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\git\Persona3InC\persona3Test\UseSkillTest\UseSkillTest.c(79,26): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\git\Persona3InC\persona3Test\UseSkillTest\UseSkillTest.c(82,8): warning C4244: '함수': 'time_t'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\git\Persona3InC\persona3Test\UseSkillTest\UseSkillTest.c(104,41): warning C4244: '=': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  UseSkillTestMain.c
+  코드를 생성하고 있습니다...
+  UseSkillTest.vcxproj -> D:\git\Persona3InC\persona3Test\x64\Debug\UseSkillTest.exe
+  'pwsh.exe'은(는) 내부 또는 외부 명령, 실행할 수 있는 프로그램, 또는
+  배치 파일이 아닙니다.
