@@ -4,6 +4,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <time.h>
+#include <Windows.h>
 
 # define SLASH 0
 # define HIT 1

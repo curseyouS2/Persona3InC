@@ -96,6 +96,7 @@ int calcDamage(Skill* skill, Player* player, int amount, stat bonus)
 	int damage = amount;
 	int statBonus = bonus;
 	damage += statBonus;
+	
 	if (player->playerStatus.buff[0])	//공증 있다면
 	{
 		int buffBonus = 0.3 * damage;
