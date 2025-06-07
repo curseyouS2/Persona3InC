@@ -16,7 +16,7 @@
 # define DARK 8
 # define NONE 9
 
-
+# define ALL_ENEMY 4
 // 사용자 struct, type 정의
 typedef int index;	// 나중에 index의 int 모두 index로 바꿀 것...
 typedef int level;
@@ -47,9 +47,7 @@ typedef struct magicattack {
 	int property; // 스킬 속성
 }MagicAttack;
 typedef struct immediatedeath {
-	int cost;
-	int amount;
-	int times;	 // 번 수
+	int cost;	 // 번 수
 	int target;
 	int accuracy;
 	int property; // 스킬 속성
@@ -57,10 +55,7 @@ typedef struct immediatedeath {
 typedef struct heal {
 	int cost;
 	int amount;
-	int times;	 // 번 수
 	int target;
-	int accuracy;
-	int property; // 스킬 속성
 }Heal;
 typedef struct buff {
 	int cost;
@@ -154,13 +149,29 @@ typedef struct enemy{
 	char enemyName[100];			// 적 이름
 	index enemyIndex;			// 적 인덱스	
 	EnemyStatus enemyStatus;
+	const Skill* enemySkillPool[8];
 	int enemyExp;				// 획득 경험치
 	int enemyDropItem[3];		// 드롭 아이템
 }Enemy;
 
+typedef struct nowEnemy {
+	int enemyNum;
+	Enemy enemyGroup[5];	
+}NowEnemy;
+
+Enemy* allEnemy[ALL_ENEMY];	// 그럼 구조가 ...
+// 보스 따로 구현할 것
+
 // 함수 모음
 void initPlayer(Player* player);
-Skill* checkSkill(Player* player, char str[]);
+NowEnemy makeEnemy();
+Skill* checkSkill(Player* player);	
+int selectTarget(Enemy EnemyGroup[]);
+int isEnemyDead(Enemy enemy);
+void setEnemyIndex(NowEnemy* currentEnemyGroup);
+// Aibo selectTarget(Aibo target);
+void useSkill(Skill* skill, Player* player, Persona* persona, NowEnemy* currentEnemyGroup);
+
 
 int physicDouble(Player* player);
 int magicDouble(Player* player);
@@ -168,7 +179,7 @@ int calcDamage(Skill* skill, Player* player, int amount, stat bonus);
 void attack(int damage, Enemy* enemy);
 void heal(Skill* skill, Player* player);
 int imDeath(Skill* skill, Player* player, Enemy* enemy);
-void useSkill(Skill* skill, Player* player, Persona* persona, Enemy* enemy);
+
 
 // 스킬 구현
 extern const Skill Noskill;
@@ -179,8 +190,11 @@ extern const Skill Zio;
 extern const Skill Garu;
 extern const Skill Megido;
 
+extern const Skill Hama;
+
 // 페르소나 구현
 extern Persona orpheus;
 extern Persona empty;
 
+// 적 구현
 extern Enemy testEnemy;

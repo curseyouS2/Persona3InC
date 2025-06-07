@@ -5,20 +5,32 @@ int nextLevelExp[9] = {
 void initPlayer(Player* player) 
 {
 	strcpy(player->playerName, "유키");
-	player->playerStatus = (PlayerStatus){ 100, 100, 100, 100, {0,0,0}, {0,0,0} };	//구조체 리터럴 생성...형변환이 아니라!!
+	player->playerStatus = (PlayerStatus){ 100, 100, 100, 100, {0,0,0}, {0,0,0} };	
 	player->personaList = (PersonaList){
 	{ orpheus, empty, empty, empty, empty, empty, empty, empty }, 1, 0 };  // numPersona, nowpersona
 }
 
-Skill* checkSkill(Player* player, char str[])
+NowEnemy makeEnemy() {
+	srand(time(NULL));
+	NowEnemy newEnemyGroup;
+	newEnemyGroup.enemyNum = rand() % 5 + 1;
+	for (int i = 0; i < newEnemyGroup.enemyNum; i++)	// allEnemy배열
+	{
+		newEnemyGroup.enemyGroup[i] = *allEnemy[rand() % ALL_ENEMY];
+	}
+	return newEnemyGroup;
+}
+
+Skill* checkSkill(Player* player)
 {
+	char str[100];
 	str[0] = '\0';
 	int isExist = 0;
 	do {
 		scanf("%s", str);
 		for (int i = 0;i < 8;i++) 
 		{
-			if (player->personaList.playerPersona[player->personaList.nowPersona].skillPool[i] == NULL) continue; // ⭐ NULL 체크 먼저
+			if (player->personaList.playerPersona[player->personaList.nowPersona].skillPool[i] == NULL) continue; // Skill* NULL 인지 체크 
 			if (!strcmp(str, player->personaList.playerPersona[player->personaList.nowPersona].skillPool[i]->skillName))
 			{
 				isExist = 1;
@@ -29,6 +41,45 @@ Skill* checkSkill(Player* player, char str[])
 	} while (isExist == 0);
 }
 
+int selectTarget(NowEnemy* enemygroup)
+{
+	int choose;
+	while (1)
+	{
+		printf("공격할 적의 번호를 입력...(0부터 시작)\n");
+		scanf(" %d", &choose);
+		if (choose >= 0 && choose < enemygroup->enemyNum)
+		{
+			return choose;
+		}
+		else
+		{
+			printf("잘못된 입력입니다...\n");
+			continue;
+		}
+	}
+}
+
+int isEnemyDead(Enemy enemy)
+{
+	if (enemy.enemyStatus.hp <= 0)
+	{
+		printf("%s 처치\n", enemy.enemyName);
+		return 1;
+	}
+	return 0;
+}
+void setEnemyIndex(NowEnemy* currentEnemyGroup)
+{
+	for (int i = 0; i < currentEnemyGroup->enemyNum; i++)
+	{
+		if (currentEnemyGroup->enemyGroup[i].enemyStatus.hp <= 0)
+		{
+			currentEnemyGroup->enemyGroup[i] = currentEnemyGroup->enemyGroup[i + 1];
+		}
+	}
+	(currentEnemyGroup->enemyNum)--;
+}
 // 2배 판정
 int physicDouble(Player* player) 
 {
@@ -64,7 +115,7 @@ int calcDamage(Skill* skill, Player* player, int amount, stat bonus)
 // 실제로 공격	... 명중 확률 계산, 
 void attack(int damage, Enemy* enemy)
 {
-
+	enemy->enemyStatus.hp -= damage;
 }
 // 힐 적용
 void heal(Skill* skill, Player* player)	//나중에 aibo 추가할 것 아니면 aibo랑 enemy랑 같은 구조로 짜는게 나을지도
@@ -74,6 +125,8 @@ void heal(Skill* skill, Player* player)	//나중에 aibo 추가할 것 아니면
 		maxHp = player->playerStatus.hpMax;
 	currentHp += healAmount;
 	if (currentHp > maxHp)	currentHp = maxHp;
+	printf("\n%d만큼 회복함\n", healAmount);
+	player->playerStatus.hp = currentHp;
 }
 
 // 즉사기 확률 계산 
@@ -98,18 +151,16 @@ int imDeath(Skill* skill, Player* player, Enemy* enemy) // 기본 명중률, 플
 	int nowChance = rand() % 100 + 1;	//1부터 100까지
 	if (nowChance > realChance) 
 	{
-		printf("즉사기 회피!\n");
 		return 0;
 	}
 	else
 	{
-		printf("즉사기 명중!\n");
 		return 1;
 	}
 }
 
 // 스킬 사용
-void useSkill(Skill* skill, Player* player, Persona* persona, Enemy* enemy)
+void useSkill(Skill* skill, Player* player, Persona* persona, NowEnemy* currentEnemyGroup)
 {
 	int damage = 0;
 	int cost = 0;
@@ -119,34 +170,77 @@ void useSkill(Skill* skill, Player* player, Persona* persona, Enemy* enemy)
 		cost = (skill->skillData.physic.cost) * (player->playerStatus.hpMax);
 		player->playerStatus.hp -= cost;
 		damage = calcDamage(skill, player, skill->skillData.physic.amount, persona->stronger);
+		if (skill->skillData.physic.target == 0)
+		{
+			int choose = selectTarget(currentEnemyGroup);
+			Enemy* e = &currentEnemyGroup->enemyGroup[choose];
+			printf("%s 사용!\n", skill->skillName);
+			attack(damage, e);
+			printf("%s에게 %d만큼의 데미지를 입혔습니다...\n", currentEnemyGroup->enemyGroup[choose], damage);
+			if (isEnemyDead(currentEnemyGroup->enemyGroup[choose])) {
+				setEnemyIndex(currentEnemyGroup);
+			}
+		}
 		break;
+
 	case MAGIC:
 		cost = skill->skillData.magic.cost;
 		player->playerStatus.mp -= cost;
 		damage = calcDamage(skill, player, skill->skillData.magic.amount, persona->intelligence);
-		attack(damage, enemy);
+		if (skill->skillData.magic.target == 0)
+		{
+			int choose = selectTarget(currentEnemyGroup);
+			Enemy* e = &currentEnemyGroup->enemyGroup[choose];
+			printf("%s 사용!\n", skill->skillName);
+			attack(damage, e);
+			printf("%s에게 %d만큼의 데미지를 입혔습니다...\n", currentEnemyGroup->enemyGroup[choose], damage);
+			if (isEnemyDead(currentEnemyGroup->enemyGroup[choose])) {
+				setEnemyIndex(currentEnemyGroup);
+			}
+		}
 		break;
+
 	case IMDEATH:
 		cost = skill->skillData.imDeath.cost;
 		player->playerStatus.mp -= cost;
-		if (imDeath(skill, player, enemy))
+		if (skill->skillData.physic.target == 0)	// 단일 타겟
 		{
-			attack(enemy->enemyStatus.hpMax, enemy);
+			int choose = selectTarget(currentEnemyGroup);
+			Enemy* e = &currentEnemyGroup->enemyGroup[choose];
+			printf("%s 사용!\n", skill->skillName);
+			if (imDeath(skill, player, e))	// 명중시에
+			{
+				attack(e->enemyStatus.hpMax, e);	// 적 전체 체력만큼 데미지
+				printf("%s 명중!\n", skill->skillName);
+				if (isEnemyDead(currentEnemyGroup->enemyGroup[choose])) 
+				{
+					setEnemyIndex(currentEnemyGroup);
+				}
+			}
+			else
+			{
+				printf("%s 빗나감!\n", skill->skillName);
+			}
 		}
 		break;
+
 	case HEAL:
 		cost = skill->skillData.heal.cost;
 		player->playerStatus.mp -= cost;
 		heal(skill, player);
 		break;
+
 	case BUFF:
 		//buff(Player* player, Skill* skill)
 		player->playerStatus.buff[skill->skillData.buff.bufftype] += 3;
 		break;
+
 	case DEBUFF:
 		player->playerStatus.buff[skill->skillData.buff.bufftype] += 3;
+
 	case DOUBLEP:
 		break;
+
 	case ABNORMAL:
 		break;
 	}
@@ -168,6 +262,9 @@ const Skill Zio = { "지오", MAGIC, {.magic = {10, 50, 1, 0, 50, ELECTRIC}} };
 const Skill Garu = { "갈", MAGIC, {.magic = {10, 50, 1, 0, 50, WIND}} };
 const Skill Megido = { "메기도", MAGIC, {.magic = {50, 150, 1, 1, 90, NONE}} };
 
+const Skill Hama = { "하마", IMDEATH, {.imDeath = {20, 0, 30, LIGHT}} };
+
+const Skill Dia = { "디아", HEAL, {.heal = {20, 30, 1,}} };
 
 // 페르소나 구현
 /*
@@ -194,7 +291,7 @@ Persona orpheus = {
 	"오르페우스", 1, 10,
 	10, 10, 10, 10, 10,
 	{0, 0, 0, 0, 0, 0, 0, 0, 0},
-	{&Slash, &Agi, &Bufu, &Zio, &Garu, &Megido, &Noskill, &Noskill}
+	{&Slash, &Agi, &Bufu, &Zio, &Garu, &Megido, &Hama, &Dia}
 };
 
 // 적 구현
@@ -221,7 +318,43 @@ Enemy
 
 */
 
-Enemy testEnemy =
-{ "테스트용 적", 0, {100, 100, 100, 100, 10, 10, 10, 10, 10,
-{0,0,0,0,0,0,0,0,0},{0,0,0}, {0,0,0}},
-25, {0, 0, 1} };
+Enemy testEnemy = {
+	"테스트용 적", 0,
+	{100, 100, 100, 100, 10, 10, 10, 10, 10,
+	{0,0,0,0,0,0,0,0,0},{0,0,0}, {0,0,0}},
+	{&Slash, &Agi, &Noskill, &Noskill, &Noskill, &Noskill, &Noskill, &Noskill},
+	25, {0, 0, 1}
+};
+
+Enemy shadowSlime = {
+	"섀도우 슬라임", 1,
+	{80, 80, 80, 80, 8, 5, 6, 5, 5,
+	{0,0,0,0,0,0,0,1,1}, {0,0,0}, {0,0,0}},
+	{&Slash, &Bufu, &Noskill, &Noskill, &Noskill, &Noskill, &Noskill, &Noskill},
+	15, {0, 1, 2}
+};
+
+Enemy shadowGoblin = {
+	"섀도우 고블린", 2,
+	{120, 50, 120, 50, 12, 8, 10, 8, 6,
+	{0,0,1,1,0,0,0,0,0}, {0,0,0}, {0,0,0}},
+	{&Zio, &Slash, &Noskill, &Noskill, &Noskill, &Noskill, &Noskill, &Noskill},
+	30, {1, 2, 3}
+};
+
+Enemy shadowKnight = {
+	"섀도우 나이트", 3,
+	{200, 100, 200, 100, 20, 15, 12, 10, 10,
+	{1,1,0,0,0,0,0,0,1}, {0,0,0}, {0,0,0}},
+	{&Slash, &Garu, &Bufu, &Noskill, &Noskill, &Noskill, &Noskill, &Noskill},
+	50, {2, 3, 4}
+};
+ 
+
+// 전체 적 저장 배열
+Enemy* allEnemy[ALL_ENEMY] = {
+	&testEnemy,
+	&shadowSlime,
+	&shadowGoblin,
+	&shadowKnight
+};
