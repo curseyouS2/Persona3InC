@@ -1,10 +1,15 @@
+ #pragma once
 # define _CRT_SECURE_NO_WARNINGS
 
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <time.h>
-#include <Windows.h>
+#ifdef _WIN32
+    #include <Windows.h>
+#else
+    #include <unistd.h>  // ì˜ˆ: sleep(), usleep() ë“± POSIX API
+#endif
 
 # define SLASH 0
 # define HIT 1
@@ -18,40 +23,39 @@
 # define NONE 9
 
 # define ALL_ENEMY 4
-// »ç¿ëÀÚ struct, type Á¤ÀÇ
-typedef int index;	// ³ªÁß¿¡ indexÀÇ int ¸ğµÎ index·Î ¹Ù²Ü °Í...
+// ì‚¬ìš©ì struct, type ì •ì˜
 typedef int level;
 typedef int stat;
 
-// ÇÊ¿ä °æÇèÄ¡ ¹è¿­ [0]: 1 -> 2
+// í•„ìš” ê²½í—˜ì¹˜ ë°°ì—´ [0]: 1 -> 2
 int nextLevelExp[9];
 typedef struct Level {
 	level nowLevel;
-	int nowExp;	//nowExp >= nextLevelExp[nowLevel-1] -> ·¹º§¾÷
+	int nowExp;	//nowExp >= nextLevelExp[nowLevel-1] -> ë ˆë²¨ì—…
 }Level;
-// ½ºÅ³ Á¤ÀÇ
+// ìŠ¤í‚¬ ì •ì˜
 
 typedef struct phycialttack {
 	double cost;
 	int amount;
-	int times;	 // ¹ø ¼ö
+	int times;	 // ë²ˆ ìˆ˜
 	int target;
 	int accuracy;
-	int property; // ½ºÅ³ ¼Ó¼º
+	int property; // ìŠ¤í‚¬ ì†ì„±
 }PhysicalAttack;
 typedef struct magicattack {
 	int cost;
 	int amount;
-	int times;	 // ¹ø ¼ö
+	int times;	 // ë²ˆ ìˆ˜
 	int target;
 	int accuracy;
-	int property; // ½ºÅ³ ¼Ó¼º
+	int property; // ìŠ¤í‚¬ ì†ì„±
 }MagicAttack;
 typedef struct immediatedeath {
-	int cost;	 // ¹ø ¼ö
+	int cost;	 // ë²ˆ ìˆ˜
 	int target;
 	int accuracy;
-	int property; // ½ºÅ³ ¼Ó¼º
+	int property; // ìŠ¤í‚¬ ì†ì„±
 }ImmediateDeath;
 typedef struct heal {
 	int cost;
@@ -60,18 +64,18 @@ typedef struct heal {
 }Heal;
 typedef struct buff {
 	int cost;
-	int bufftype; //0, 1, 2 °ø, ¹æ, ¼Ó
-	int target;	  //Àû±º, Àû±º ÀüÃ¼, ¾Æ±º, ¾Æ±º ÀüÃ¼ 0, 1, 2, 3
+	int bufftype; //0, 1, 2 ê³µ, ë°©, ì†
+	int target;	  //ì êµ°, ì êµ° ì „ì²´, ì•„êµ°, ì•„êµ° ì „ì²´ 0, 1, 2, 3
 }Buff;
 typedef Buff DeBuff;
-typedef struct doublepower {	// Â÷Áö, ÄÁ¼¾Æ®·¹ÀÌÆ®
-	int Activate;	//È°¼ºÈ­?
+typedef struct doublepower {	// ì°¨ì§€, ì»¨ì„¼íŠ¸ë ˆì´íŠ¸
+	int Activate;	//í™œì„±í™”?
 }DoublePower;
-typedef struct abnormalstatusskill {	// »óÅÂ ÀÌ»ó
+typedef struct abnormalstatusskill {	// ìƒíƒœ ì´ìƒ
 	int cost;
 	int target;
 	int accuracy;
-	int	weirdtype;	//»óÅÂÀÌ»ó Å¸ÀÔ...
+	int	weirdtype;	//ìƒíƒœì´ìƒ íƒ€ì…...
 }AbnormalStatus;
 
 typedef enum skillType {
@@ -92,13 +96,13 @@ typedef struct skill {
 	char skillName[100];
 	SkillType skillType;
 	SkillTypeData skillData;
-}Skill;
+}Skill;                                    
 
-// Æä¸£¼Ò³ª Á¤ÀÇ
+// í˜ë¥´ì†Œë‚˜ ì •ì˜
 typedef struct persona {
-	// ÀÌ¸§, ÀÎµ¦½º, °ø, ¸¶, ¼Ó, ³», ¿î, ³»¼º, ½ºÅ³Ç®
+	// ì´ë¦„, ì¸ë±ìŠ¤, ê³µ, ë§ˆ, ì†, ë‚´, ìš´, ë‚´ì„±, ìŠ¤í‚¬í’€
 	char personaName[100];
-	index personaIndex;
+	int personaIndex;
 	level personaLevel;
 	stat stronger;
 	stat intelligence;
@@ -109,20 +113,20 @@ typedef struct persona {
 	const Skill* skillPool[8];
 }Persona;
 
-// ÇÃ·¹ÀÌ¾î Á¤ÀÇ
-typedef struct playerstatus {	//player.h, aibo.h ¿¡¼­ »ç¿ë, ¼¼ºÎ ´É·ÂÄ¡´Â Æä¸£¼Ò³ª¿¡ µû¶ó ´Ş¶óÁö¹Ç·Î »°À½
+// í”Œë ˆì´ì–´ ì •ì˜
+typedef struct playerstatus {	//player.h, aibo.h ì—ì„œ ì‚¬ìš©, ì„¸ë¶€ ëŠ¥ë ¥ì¹˜ëŠ” í˜ë¥´ì†Œë‚˜ì— ë”°ë¼ ë‹¬ë¼ì§€ë¯€ë¡œ ëºìŒ
 	int hpMax;
 	int mpMax;
 	int hp;
 	int mp;
-	int buff[3];	//°ø, ¹æ, ¼Ó
+	int buff[3];	//ê³µ, ë°©, ì†
 	int debuff[3];
 	int physicdouble; int magicdouble;
 }PlayerStatus;
 typedef struct playerPersonaList {
 	Persona playerPersona[8];
-	int numPersona;	//ÇöÀç Æä¸£¼Ò³ª ¼ö
-	int nowPersona;	//ÇöÀç ÀåÂøÇÑ Æä¸£¼Ò³ª 
+	int numPersona;	//í˜„ì¬ í˜ë¥´ì†Œë‚˜ ìˆ˜
+	int nowPersona;	//í˜„ì¬ ì¥ì°©í•œ í˜ë¥´ì†Œë‚˜ 
 }PersonaList;
 typedef struct player {
 	char playerName[100];
@@ -131,7 +135,7 @@ typedef struct player {
 	PersonaList personaList;	
 }Player;
 
-// Àû Á¤ÀÇ
+// ì  ì •ì˜
 typedef struct enemystatus {
 	int hpMax;
 	int mpMax;
@@ -143,16 +147,17 @@ typedef struct enemystatus {
 	stat duration;
 	stat luck;
 	int weekness[9];
-	int buff[3];	//°ø, ¹æ, ¼Ó
+	int buff[3];	//ê³µ, ë°©, ì†
 	int debuff[3];
+	int physicdouble; int magicdouble;
 }EnemyStatus;
 typedef struct enemy{
-	char enemyName[100];			// Àû ÀÌ¸§
-	index enemyIndex;			// Àû ÀÎµ¦½º	
+	char enemyName[100];			// ì  ì´ë¦„
+	int enemyIndex;			// ì  ì¸ë±ìŠ¤	
 	EnemyStatus enemyStatus;
 	const Skill* enemySkillPool[8];
-	int enemyExp;				// È¹µæ °æÇèÄ¡
-	int enemyDropItem[3];		// µå·Ó ¾ÆÀÌÅÛ
+	int enemyExp;				// íšë“ ê²½í—˜ì¹˜
+	int enemyDropItem[3];		// ë“œë¡­ ì•„ì´í…œ
 }Enemy;
 
 typedef struct nowEnemy {
@@ -160,29 +165,29 @@ typedef struct nowEnemy {
 	Enemy enemyGroup[5];	
 }NowEnemy;
 
-Enemy* allEnemy[ALL_ENEMY];	// ±×·³ ±¸Á¶°¡ ...
-// º¸½º µû·Î ±¸ÇöÇÒ °Í
+Enemy* allEnemy[ALL_ENEMY];	// ê·¸ëŸ¼ êµ¬ì¡°ê°€ ...
+// ë³´ìŠ¤ ë”°ë¡œ êµ¬í˜„í•  ê²ƒ
 
-// ÇÔ¼ö ¸ğÀ½
+// í•¨ìˆ˜ ëª¨ìŒ
 void initPlayer(Player* player);
 NowEnemy makeEnemy();
-Skill* checkSkill(Player* player);	
-int selectTarget(Enemy EnemyGroup[]);
+const Skill* checkSkill(Player* player);	
+int selectTarget(NowEnemy* enemygroup);
 int isEnemyDead(Enemy enemy);
 void setEnemyIndex(NowEnemy* currentEnemyGroup);
 // Aibo selectTarget(Aibo target);
-void useSkill(Skill* skill, Player* player, Persona* persona, NowEnemy* currentEnemyGroup);
+void useSkill(const Skill* skill, Player* player, Persona* persona, NowEnemy* currentEnemyGroup);
 
 
 int physicDouble(Player* player);
 int magicDouble(Player* player);
-int calcDamage(Skill* skill, Player* player, int amount, stat bonus);
+int calcDamage(const Skill* skill, Player* player, int amount, stat bonus);
 void attack(int damage, Enemy* enemy);
-void heal(Skill* skill, Player* player);
-int imDeath(Skill* skill, Player* player, Enemy* enemy);
+void heal(const Skill* skill, Player* player);
+int imDeath(const Skill* skill, Player* player, Enemy* enemy);
 
-
-// ½ºÅ³ ±¸Çö
+ 
+// ìŠ¤í‚¬ êµ¬í˜„
 extern const Skill Noskill;
 extern const Skill Slash;
 extern const Skill Agi;
@@ -193,9 +198,9 @@ extern const Skill Megido;
 
 extern const Skill Hama;
 
-// Æä¸£¼Ò³ª ±¸Çö
+// í˜ë¥´ì†Œë‚˜ êµ¬í˜„
 extern Persona orpheus;
 extern Persona empty;
 
-// Àû ±¸Çö
+// ì  êµ¬í˜„
 extern Enemy testEnemy;

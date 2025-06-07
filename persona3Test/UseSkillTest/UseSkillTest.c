@@ -1,4 +1,5 @@
-﻿#include "UseSkillTest.h"
+#include "UseSkillTest.h"
+
 int nextLevelExp[9] = {
 	7, 21, 63, 189, 577, 1721, 2523, 3750, 5102
 };
@@ -9,7 +10,6 @@ void initPlayer(Player* player)
 	player->personaList = (PersonaList){
 	{ orpheus, empty, empty, empty, empty, empty, empty, empty }, 1, 0 };  // numPersona, nowpersona
 }
-
 NowEnemy makeEnemy() {
 	srand(time(NULL));
 	NowEnemy newEnemyGroup;
@@ -20,8 +20,7 @@ NowEnemy makeEnemy() {
 	}
 	return newEnemyGroup;
 }
-
-Skill* checkSkill(Player* player)
+const Skill* checkSkill(Player* player)
 {
 	char str[100];
 	str[0] = '\0';
@@ -40,7 +39,6 @@ Skill* checkSkill(Player* player)
 		printf("해당 스킬은 존재하지 않습니다. 다시 입력하십시오...\n");
 	} while (isExist == 0);
 }
-
 int selectTarget(NowEnemy* enemygroup)
 {
 	int choose;
@@ -59,7 +57,6 @@ int selectTarget(NowEnemy* enemygroup)
 		}
 	}
 }
-
 int isEnemyDead(Enemy enemy)
 {
 	if (enemy.enemyStatus.hp <= 0)
@@ -81,17 +78,74 @@ void setEnemyIndex(NowEnemy* currentEnemyGroup)
 	(currentEnemyGroup->enemyNum)--;
 }
 // 2배 판정
-int physicDouble(Player* player) 
+int physicDouble(void* attacker, int isPlayer) 
 {
-	return player->playerStatus.physicdouble;
+	if(isPlayer)
+	{
+		Player* player = (Player*)attacker;
+		return player->playerStatus.physicdouble;
+	}
+	else
+	{
+		Enemy* enemy = (Enemy*)attacker;
+		return enemy->enemyStatus.physicdouble;
+	}
 }
-int magicDouble(Player* player) 
+int magicDouble(void* attacker, int isPlayer) 
 {
-	return player->playerStatus.magicdouble;
+	if(isPlayer)
+	{
+		Player* player = (Player*)attacker;
+		return player->playerStatus.magicdouble;
+	}
+	else
+	{
+		Enemy* enemy = (Enemy*)attacker;
+		return enemy->enemyStatus.magicdouble;
+	}
 }
-
 // 데미지 계산(useSkill 등의 내부에서 사용)
-int calcDamage(Skill* skill, Player* player, int amount, stat bonus)
+int calcDamage(const Skill* skill, void* attacker, int isPlayer, int amount, int statBonus)
+{
+	int damage = amount;
+	damage += statBonus;
+
+	int isBuff;
+	int isDebuff;
+    int isPhysicdouble = 0;
+    int isMagicdouble = 0;
+	// 공격 주체에 따른 초기 설정
+	if (isPlayer)
+    {
+        Player* player = (Player*)attacker;
+        isBuff = player->playerStatus.buff[0];
+		isDebuff = player->playerStatus.debuff[0];
+        isPhysicdouble = physicDouble(attacker, isPlayer);
+        isMagicdouble = magicDouble(attacker, isPlayer);
+    }
+    else
+    {
+        Enemy* enemy = (Enemy*)attacker;
+        isBuff = enemy->enemyStatus.buff[0];
+		isDebuff = enemy->enemyStatus.debuff[0];
+        isPhysicdouble = physicDouble(attacker, isPlayer);
+        isMagicdouble = magicDouble(attacker, isPlayer);
+    }
+
+	if (isBuff || isDebuff)	//공격력 버프디버프 있다면
+	{
+		int buffBonus = 0.3 * damage;
+		int debuffBonus = 0.3 * damage;
+		if(isBuff) damage += buffBonus;
+		if(isDebuff) damage -= debuffBonus;
+	}
+	if ( skill->skillType==PHYSICAL && isPhysicdouble) damage *= 2;
+	if (skill->skillType == MAGIC && isMagicdouble) damage *= 2;
+
+	return damage;
+}
+// 구버전 calcDamage
+/*int calcDamage(const Skill* skill, Player* player, int amount, stat bonus)
 {
 	int damage = amount;
 	int statBonus = bonus;
@@ -111,15 +165,18 @@ int calcDamage(Skill* skill, Player* player, int amount, stat bonus)
 		damage *= 2;
 	}
 	return damage;
-}
-
+}*/
 // 실제로 공격	... 명중 확률 계산, 
 void attack(int damage, Enemy* enemy)
 {
 	enemy->enemyStatus.hp -= damage;
 }
+void attackPlayer(int damage, Player* player)
+{
+    player->playerStatus.hp -= damage;
+}
 // 힐 적용
-void heal(Skill* skill, Player* player)	//나중에 aibo 추가할 것 아니면 aibo랑 enemy랑 같은 구조로 짜는게 나을지도
+void heal(const Skill* skill, Player* player)	//나중에 aibo 추가할 것 아니면 aibo랑 enemy랑 같은 구조로 짜는게 나을지도
 {
 	int currentHp = player->playerStatus.hp,
 		healAmount = skill->skillData.heal.amount,
@@ -129,9 +186,8 @@ void heal(Skill* skill, Player* player)	//나중에 aibo 추가할 것 아니면
 	printf("\n%d만큼 회복함\n", healAmount);
 	player->playerStatus.hp = currentHp;
 }
-
 // 즉사기 확률 계산 
-int imDeath(Skill* skill, Player* player, Enemy* enemy) // 기본 명중률, 플레이어/적 회피-명중 버프 계산)
+int imDeath(const Skill* skill, Player* player, Enemy* enemy) // 기본 명중률, 플레이어/적 회피-명중 버프 계산)
 {
 	int defaultChance = skill->skillData.imDeath.accuracy,
 		bonus1 = 0, bonus2 = 0, bonus3 = 0;
@@ -161,10 +217,196 @@ int imDeath(Skill* skill, Player* player, Enemy* enemy) // 기본 명중률, 플
 }
 
 // 스킬 사용
-void useSkill(Skill* skill, Player* player, Persona* persona, NowEnemy* currentEnemyGroup)
+  
+void useSkill(const Skill* skill, void* attacker, int isPlayer, Player* player, NowEnemy* currentEnemyGroup)
 {
 	int damage = 0;
 	int cost = 0;
+    int statBonus;
+	
+    Player* player = NULL;
+    Enemy* enemy = NULL;
+	Persona* currentPersona = NULL;
+
+// 초기 설정... 공격 주체 할당, 스탯 뽑아오기
+#pragma region initSkill
+    if (isPlayer)
+    {
+        player = (Player*)attacker;	// void* ->  실제 공격주체로 캐스팅
+        currentPersona = &player->personaList.playerPersona[player->personaList.nowPersona];
+		// 공, 마 가져오기 (calcDamage에 넣을거임)
+        if (skill->skillType == PHYSICAL)
+        {
+            statBonus = currentPersona->stronger;
+        }
+        else if (skill->skillType == MAGIC)
+        {
+            statBonus = currentPersona->intelligence;
+        }
+    }
+    else
+    {
+        enemy = (Enemy*)attacker;
+
+        if (skill->skillType == PHYSICAL)
+        {
+            statBonus = enemy->enemyStatus.stronger;
+        }
+        else if (skill->skillType == MAGIC)
+        {
+            statBonus = enemy->enemyStatus.intelligence;
+        }
+    }
+#pragma endregion
+	switch (skill->skillType) 
+	{
+
+	case PHYSICAL:
+#pragma region Physical
+		if(isPlayer)
+		{
+			cost = (skill->skillData.physic.cost) * (player->playerStatus.hpMax);
+			player->playerStatus.hp -= cost;
+			damage = calcDamage(skill, attacker, isPlayer, skill->skillData.physic.amount, statBonus);
+			
+			if (skill->skillData.physic.target == 0)
+			{
+				int choose = selectTarget(currentEnemyGroup);
+				Enemy* e = &currentEnemyGroup->enemyGroup[choose];
+				printf("%s 사용!\n", skill->skillName);
+				attack(damage, e);
+				printf("%s에게 %d만큼의 데미지를 입혔습니다...\n", e->enemyName, damage);
+				if (isEnemyDead(*e)) 
+				{
+					setEnemyIndex(currentEnemyGroup);
+				}
+			}
+		}
+		else	// 적의 턴
+		{
+			cost = (skill->skillData.physic.cost) * (enemy->enemyStatus.hpMax);
+            enemy->enemyStatus.hp -= cost;
+
+            damage = calcDamage(skill, attacker, isPlayer, skill->skillData.physic.amount, statBonus);
+
+            printf("%s 사용!\n", skill->skillName);
+            attackPlayer(damage, player); // 플레이어 공격용 함수
+            printf("플레이어에게 %d만큼의 데미지를 입혔습니다...\n", damage);
+		}
+	
+		break;
+#pragma endregion
+	case MAGIC:
+#pragma region Magic
+		if(isPlayer)
+		{
+			cost = skill->skillData.magic.cost;
+			player->playerStatus.mp -= cost;	//부족 처리 할 것											
+			damage = calcDamage(skill, attacker, isPlayer, skill->skillData.magic.amount, statBonus);
+			
+			if (skill->skillData.magic.target == 0)
+			{
+				int choose = selectTarget(currentEnemyGroup);
+				Enemy* e = &currentEnemyGroup->enemyGroup[choose];
+				printf("%s 사용!\n", skill->skillName);
+				attack(damage, e);
+				printf("%s에게 %d만큼의 데미지를 입혔습니다...\n", e->enemyName, damage);
+				if (isEnemyDead(*e)) 
+				{
+					setEnemyIndex(currentEnemyGroup);
+				}
+			}
+		}
+		else	// 적의 턴
+		{
+			cost = (skill->skillData.magic.cost);
+            enemy->enemyStatus.mp -= cost;
+
+            damage = calcDamage(skill, attacker, isPlayer, skill->skillData.magic.amount, statBonus);
+
+            printf("%s 사용!\n", skill->skillName);
+            attackPlayer(damage, player); // 플레이어 공격용 함수
+            printf("플레이어에게 %d만큼의 데미지를 입혔습니다...\n", damage);
+		}
+	
+		break;
+#pragma endregion
+	case IMDEATH:
+		if (isPlayer)
+		{																	
+    		player->playerStatus.mp -= cost;
+
+    		if (skill->skillData.imDeath.target == 0)  // 단일 타겟...전체 대상이면 그냥 적 수만큼 반복문 넣어서 구현하면 됨
+    		{
+        		int choose = selectTarget(currentEnemyGroup);
+        		Enemy* e = &currentEnemyGroup->enemyGroup[choose];
+        		printf("%s 사용!\n", skill->skillName);
+
+        		if (imDeath(skill, player, e))  // 명중 시
+        		{
+            		attack(e->enemyStatus.hpMax, e);  // 적 전체 체력만큼 데미지
+            		printf("%s 명중!\n", skill->skillName);
+            		if (isEnemyDead(*e))
+            		{
+                		setEnemyIndex(currentEnemyGroup);
+            		}
+        		}
+        		else
+        		{
+					printf("%s 빗나감!\n", skill->skillName);
+				}	
+			}
+		}
+		else
+		{
+    		enemy->enemyStatus.mp -= cost;
+    		printf("%s 사용!\n", skill->skillName)				;
+    		int chance = rand() % 100 + 1;
+    		if (chance <= skill->skillData.imDeath.accuracy)
+    		{
+        		attackPlayer(player->playerStatus.hp, player);  // 플레이어 즉사 처리
+        		printf("%s 명중!\n", skill->skillName);
+    		}
+   			else
+    		{
+        		printf("%s 빗나감!\n", skill->skillName);
+    		}
+		}
+		break;
+
+	case HEAL:
+		cost = skill->skillData.heal.cost;
+		player->playerStatus.mp -= cost;
+		heal(skill, player);
+		break;
+
+	case BUFF:
+		//buff(Player* player, Skill* skill)
+		player->playerStatus.buff[skill->skillData.buff.bufftype] += 3;
+		break;
+
+	case DEBUFF:
+		player->playerStatus.buff[skill->skillData.buff.bufftype] += 3;
+
+	case DOUBLEP:
+		break;
+
+	case ABNORMAL:
+		break;
+	}
+
+}
+// 구버전 useSkill
+/*void useSkill(const Skill* skill, Player* player, Persona* persona, NowEnemy* currentEnemyGroup)
+{
+	int damage = 0;
+	int cost = 0;
+
+
+
+
+
+
 	switch (skill->skillType) {
 
 	case PHYSICAL:
@@ -177,7 +419,7 @@ void useSkill(Skill* skill, Player* player, Persona* persona, NowEnemy* currentE
 			Enemy* e = &currentEnemyGroup->enemyGroup[choose];
 			printf("%s 사용!\n", skill->skillName);
 			attack(damage, e);
-			printf("%s에게 %d만큼의 데미지를 입혔습니다...\n", currentEnemyGroup->enemyGroup[choose], damage);
+			printf("%s에게 %d만큼의 데미지를 입혔습니다...\n", currentEnemyGroup->enemyGroup[choose].enemyName, damage);
 			if (isEnemyDead(currentEnemyGroup->enemyGroup[choose])) {
 				setEnemyIndex(currentEnemyGroup);
 			}
@@ -194,7 +436,7 @@ void useSkill(Skill* skill, Player* player, Persona* persona, NowEnemy* currentE
 			Enemy* e = &currentEnemyGroup->enemyGroup[choose];
 			printf("%s 사용!\n", skill->skillName);
 			attack(damage, e);
-			printf("%s에게 %d만큼의 데미지를 입혔습니다...\n", currentEnemyGroup->enemyGroup[choose], damage);
+			printf("%s에게 %d만큼의 데미지를 입혔습니다...\n", currentEnemyGroup->enemyGroup[choose].enemyName, damage);
 			if (isEnemyDead(currentEnemyGroup->enemyGroup[choose])) {
 				setEnemyIndex(currentEnemyGroup);
 			}
@@ -246,7 +488,7 @@ void useSkill(Skill* skill, Player* player, Persona* persona, NowEnemy* currentE
 		break;
 	}
 
-}
+}*/
 
 // 스킬 구현
 /*

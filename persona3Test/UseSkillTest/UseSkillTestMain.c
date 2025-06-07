@@ -1,4 +1,5 @@
 #include "UseSkillTest.h"
+#include <locale.h>
 
 int main(void)
 {
@@ -10,10 +11,10 @@ int main(void)
 	running = 1;
 	char ch;
 	char str[100];
-	Skill* nowSkill;
+	const Skill* nowSkill;
 	NowEnemy currentEnemyGroup;
 	int playerTurn = 1;
-	printf("---¹èÆ² °³½Ã!!---\n");
+	printf("---ë°°í‹€ ê°œì‹œ!!---\n");
 	currentEnemyGroup = makeEnemy();
 	while (running)
 	{
@@ -23,27 +24,27 @@ int main(void)
 #pragma region playerturn
 		while (playerTurn)
 		{
-			// ÇÃ·¹ÀÌ¾î ÅÏ
+			// í”Œë ˆì´ì–´ í„´
 			printf("\n---------------------------");
-			printf("\n[ÇÃ·¹ÀÌ¾îÅÏ]\n");
+			printf("\n[í”Œë ˆì´ì–´í„´]\n");
 			printf("\n");
-			// Àû Ãâ·Â
+			// ì  ì¶œë ¥
 			for (int i = 0; i < currentEnemyGroup.enemyNum; i++)
 			{
 				Enemy currentEnemy = currentEnemyGroup.enemyGroup[i];
-				printf("ÇöÀç Àû: %s [%d / %d]\n", currentEnemy.enemyName, currentEnemy.enemyStatus.hp, currentEnemy.enemyStatus.hpMax);
+				printf("í˜„ì¬ ì : %s [%d / %d]\n", currentEnemy.enemyName, currentEnemy.enemyStatus.hp, currentEnemy.enemyStatus.hpMax);
 			}
-			// ¸Ş´º ¼±ÅÃ
-			printf("\n~ÇöÀç »óÅÂ~\n");
+			// ë©”ë‰´ ì„ íƒ
+			printf("\n~í˜„ì¬ ìƒíƒœ~\n");
 			printf("HP: %d / %d\n", player->playerStatus.hp, player->playerStatus.hpMax);
 			printf("MP: %d / %d\n\n", player->playerStatus.mp, player->playerStatus.mpMax);
-			printf("¸Ş´º¸¦ ¼±ÅÃÇÏ¼¼¿ä...\n1. ½ºÅ³\n2. °ø°İ\n");
+			printf("ë©”ë‰´ë¥¼ ì„ íƒí•˜ì„¸ìš”...\n1. ìŠ¤í‚¬\n2. ê³µê²©\n");
 			scanf(" %c", &ch);
 
 			switch (ch) {
 			case '1':
-				printf("\nÇöÀç Æä¸£¼Ò³ª: %s\n", currentPersona->personaName);
-				printf("»ç¿ëÇÒ ½ºÅ³ ¼±ÅÃ...\n\n");
+				printf("\ní˜„ì¬ í˜ë¥´ì†Œë‚˜: %s\n", currentPersona->personaName);
+				printf("ì‚¬ìš©í•  ìŠ¤í‚¬ ì„ íƒ...\n\n");
 				for (int i = 0;i < 8;i++) {
 					printf("%s	", currentPersona->skillPool[i]->skillName);
 					if (i % 2 != 0) {
@@ -51,49 +52,49 @@ int main(void)
 					}
 				}
 				nowSkill = checkSkill(player);
-				useSkill(nowSkill, player, currentPersona, &currentEnemyGroup);
+				useSkill(nowSkill, player, 1, player, &currentEnemyGroup);
 				playerTurn = 0;
 				break;
 			case'2':
-				printf("¾ÆÁ÷ ±¸ÇöµÇÁö ¾Ê¾Ò½À´Ï´Ù...\n");
+				printf("ì•„ì§ êµ¬í˜„ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤...\n");
 				break;
 			default:
-				printf("Àß¸øµÈ ÀÔ·Â\n");
+				printf("ì˜ëª»ëœ ì…ë ¥\n");
 				break;
 			}
 		}
 #pragma endregion
 #pragma region enemyturn
-		// Àû ÅÏ
+		// ì  í„´
 		printf("\n---------------------------");
-		printf("\n[Àû ÅÏ]\n");
+		printf("\n[ì  í„´]\n");
 		for (int i = 0; i < currentEnemyGroup.enemyNum; i++)
 		{
 			Enemy* currentEnemy = &currentEnemyGroup.enemyGroup[i];
 
-			// Á×Àº ÀûÀº Çàµ¿ ¾È ÇÔ
+			// ì£½ì€ ì ì€ í–‰ë™ ì•ˆ í•¨
 			if (currentEnemy->enemyStatus.hp <= 0)
 			{
 				continue;
 			}
 
-			printf("\n>> %sÀÇ ÅÏ...\n", currentEnemy->enemyName);
-			Sleep(1000);
-			// ÀÓ½Ã ±âº» °ø°İ ±¸Çö (¹°¸® °ø°İ °¡Á¤)
-			int damage = currentEnemy->enemyStatus.stronger + rand() % 10;  // ±âº» °ø°İ + ¾à°£ ·£´ı µ¥¹ÌÁö
+			printf("\n>> %sì˜ í„´...\n", currentEnemy->enemyName);
+			sleep(1000);
+			// ì„ì‹œ ê¸°ë³¸ ê³µê²© êµ¬í˜„ (ë¬¼ë¦¬ ê³µê²© ê°€ì •)
+			int damage = currentEnemy->enemyStatus.stronger + rand() % 10;  // ê¸°ë³¸ ê³µê²© + ì•½ê°„ ëœë¤ ë°ë¯¸ì§€
 
-			printf("%s°¡ ÇÃ·¹ÀÌ¾î¸¦ °ø°İ! [%d µ¥¹ÌÁö]\n", currentEnemy->enemyName, damage);
-			Sleep(1000);
-			// ÇÃ·¹ÀÌ¾î HP °¨¼Ò Àû¿ë
+			printf("%sê°€ í”Œë ˆì´ì–´ë¥¼ ê³µê²©! [%d ë°ë¯¸ì§€]\n", currentEnemy->enemyName, damage);
+			sleep(1000);	//ë‚˜ì¤‘ì— Sleep ìœ¼ë¡œ ë°”ê¿€ ê²ƒ
+			// í”Œë ˆì´ì–´ HP ê°ì†Œ ì ìš©
 			player->playerStatus.hp -= damage;
 			if (player->playerStatus.hp < 0) player->playerStatus.hp = 0;
 
-			printf("ÇÃ·¹ÀÌ¾î HP: %d / %d\n", player->playerStatus.hp, player->playerStatus.hpMax);
-			Sleep(1000);
-			// ÇÃ·¹ÀÌ¾î »ç¸Á Ã¼Å©
+			printf("í”Œë ˆì´ì–´ HP: %d / %d\n", player->playerStatus.hp, player->playerStatus.hpMax);
+			sleep(1000);
+			// í”Œë ˆì´ì–´ ì‚¬ë§ ì²´í¬
 			if (player->playerStatus.hp == 0)
 			{
-				printf("\n´ç½ÅÀº ¾²·¯Á³½À´Ï´Ù...\n");
+				printf("\në‹¹ì‹ ì€ ì“°ëŸ¬ì¡ŒìŠµë‹ˆë‹¤...\n");
 				running = 0;
 				break;
 			}
